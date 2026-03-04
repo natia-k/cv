@@ -8,9 +8,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            --bg: #0e0e0e;
-            --ink: #f0f0f0;
-            --accent: #ff3300;
+            --bg: #ff3300; /* Intense Mucho Red */
+            --ink: #ffffff; /* Pure White Text */
+            --dark: #000000; /* Contrast Black */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -18,164 +18,180 @@
         body { 
             background: var(--bg); 
             color: var(--ink); 
-            font-family: "Helvetica Now Display", "Inter", sans-serif; 
-            line-height: 0.9;
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            line-height: 1.1;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* THE SYSTEM FRAME */
-        .frame {
+        /* STRUCTURAL LINES */
+        .grid-line {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border: 1px solid rgba(255,255,255,0.1);
-            pointer-events: none;
-            z-index: 100;
+            top: 0; left: 5vw; width: 1px; height: 100%;
+            background: rgba(255,255,255,0.2);
+            z-index: 10;
         }
 
-        /* KINETIC NAME STRIP */
-        .hero {
-            height: 140vh;
+        /* HERO TYPE (Refined Scale) */
+        header {
+            height: 80vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 0 5vw;
+            justify-content: flex-end;
+            padding: 5vw;
+            border-bottom: 2px solid var(--ink);
         }
 
-        .huge-type {
-            font-size: 28vw;
+        h1 {
+            font-size: clamp(50px, 12vw, 160px); /* Smaller, more controlled */
             font-weight: 900;
+            letter-spacing: -0.05em;
             text-transform: uppercase;
-            letter-spacing: -0.08em;
-            line-height: 0.75;
-            display: block;
+            line-height: 0.85;
         }
 
-        /* ASYMMETRIC CONTENT BLOCKS */
+        /* SECTION LAYOUT */
         .section {
-            padding: 20vh 5vw;
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 2px solid var(--ink);
+            min-height: 40vh;
         }
 
-        .label {
-            grid-column: span 12;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.4em;
-            color: var(--accent);
-            margin-bottom: 60px;
-        }
-
-        .content {
+        .cell {
+            padding: 60px 5vw;
             grid-column: span 12;
         }
 
         @media (min-width: 900px) {
-            .content { grid-column: 4 / span 8; }
+            .cell-label { grid-column: span 3; border-right: 2px solid var(--ink); }
+            .cell-content { grid-column: span 9; }
+        }
+
+        /* TYPOGRAPHY SYSTEM */
+        .label {
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--dark);
         }
 
         h2 {
-            font-size: clamp(40px, 8vw, 120px);
+            font-size: clamp(32px, 5vw, 70px);
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -0.04em;
-            margin-bottom: 40px;
-            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
         }
 
         p {
-            font-size: clamp(20px, 3vw, 36px);
-            line-height: 1.1;
+            font-size: clamp(18px, 2.5vw, 32px);
             font-weight: 500;
-            color: #888;
             max-width: 800px;
-        }
-
-        b { color: var(--ink); }
-
-        /* INTERACTIVE LINKS */
-        .links {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .links a {
             color: var(--ink);
-            text-decoration: none;
-            font-size: 14px;
-            text-transform: uppercase;
-            font-weight: 900;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 5px;
-            transition: all 0.3s;
         }
 
-        .links a:hover { color: var(--accent); border-color: var(--ink); }
+        .meta {
+            font-family: monospace;
+            font-size: 13px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
 
-        /* THE TOOLKIT MASK REVEAL */
-        .toolkit-list {
+        /* LINKS */
+        .nav-links {
+            position: absolute;
+            top: 40px;
+            right: 5vw;
+            display: flex;
+            gap: 20px;
+        }
+
+        a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 13px;
+            text-transform: uppercase;
+            border: 1px solid var(--dark);
+            padding: 8px 12px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: var(--bg);
+        }
+
+        /* TOOLKIT BOLD */
+        .toolkit-row {
             font-size: 8vw;
             font-weight: 900;
             text-transform: uppercase;
             line-height: 0.8;
             letter-spacing: -0.05em;
+            color: var(--dark);
         }
 
         /* FOOTER */
         .footer {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--accent);
-            color: var(--bg);
+            padding: 10vh 5vw;
+            text-align: center;
         }
 
-        .footer-link {
+        .footer a {
             font-size: 15vw;
-            font-weight: 900;
-            text-decoration: none;
-            color: inherit;
+            border: none;
+            padding: 0;
+            color: var(--ink);
+        }
+
+        .footer a:hover {
+            background: transparent;
+            color: var(--dark);
         }
 
     </style>
 </head>
 <body>
 
-    <div class="frame"></div>
+    <div class="grid-line"></div>
 
-    <header class="hero">
-        <span class="huge-type scroll-left">NATIA</span>
-        <span class="huge-type scroll-right" style="color: var(--accent);">KURTA</span>
-        <span class="huge-type scroll-left">NIDZE</span>
+    <nav class="nav-links">
+        <a href="https://natia-k.github.io/my-portfolio/">Portfolio</a>
+        <a href="mailto:natia.kurtanidze55@gmail.com">Email</a>
+    </nav>
+
+    <header>
+        <span class="label" style="margin-bottom: 20px;">Visual Designer // 2026</span>
+        <h1>NATIA<br>KURTA<br>NIDZE</h1>
     </header>
 
     <section class="section">
-        <span class="label">01 / DNA</span>
-        <div class="content">
-            <p>
-                <b>Visual Designer</b> building brand systems and editorial environments. 
-                I code my own frontends to ensure the <b>rhythm</b> and <b>logic</b> of the design remain absolute.
-            </p>
-            <div class="links">
-                <a href="https://natia-k.github.io/my-portfolio/">Portfolio ↗</a>
-                <a href="mailto:natia.kurtanidze55@gmail.com">Email ↗</a>
-            </div>
+        <div class="cell cell-label">
+            <span class="label">01 / DNA</span>
+        </div>
+        <div class="cell cell-content">
+            <p>Visual Designer building brand systems + editorial layouts. I code my own frontends to control type, rhythm, and interaction. Design intent stays pure.</p>
         </div>
     </section>
 
     <section class="section">
-        <span class="label">02 / Experience</span>
-        <div class="content">
-            <div style="margin-bottom: 100px;">
-                <span style="font-family: monospace; font-size: 12px; color: #555;">2021 — PRESENT</span>
+        <div class="cell cell-label">
+            <span class="label">02 / Exp</span>
+        </div>
+        <div class="cell cell-content">
+            <div style="margin-bottom: 80px;">
+                <span class="meta">2021 — PRESENT</span>
                 <h2>STK 118</h2>
-                <p>Visual Lead. Brand Systems & Digital Identity.</p>
+                <p>Visual Design Lead. Systems & Digital Architecture.</p>
             </div>
             <div>
-                <span style="font-family: monospace; font-size: 12px; color: #555;">2021 — 2025</span>
+                <span class="meta">2021 — 2025</span>
                 <h2>MANDARIN</h2>
                 <p>Concept Developer. Editorial Logic & Layout.</p>
             </div>
@@ -183,59 +199,44 @@
     </section>
 
     <section class="section">
-        <span class="label">03 / Tech</span>
-        <div class="content">
-            <div class="toolkit-list">
-                PS — AI — ID — AE —<br>
-                PY — JS — HTML — CSS
+        <div class="cell cell-label">
+            <span class="label">03 / Tools</span>
+        </div>
+        <div class="cell cell-content">
+            <div class="toolkit-row">
+                PS / AI / ID / AE<br>
+                PY / JS / HTML / CSS
             </div>
         </div>
     </section>
 
     <section class="section">
-        <span class="label">04 / Logic</span>
-        <div class="content">
+        <div class="cell cell-label">
+            <span class="label">04 / Logic</span>
+        </div>
+        <div class="cell cell-content">
+            <span class="meta">HARVARD UNIVERSITY</span>
             <h2>CS50x</h2>
-            <p>Harvard Computer Science Foundation. Algorithms & Architecture.</p>
+            <p>Foundation in Computer Science. Algorithms and software logic.</p>
         </div>
     </section>
 
     <footer class="footer">
-        <a href="mailto:natia.kurtanidze55@gmail.com" class="footer-link">HIRE</a>
+        <a href="mailto:natia.kurtanidze55@gmail.com">CONTACT</a>
     </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Name Kinetic Movement
-        gsap.to(".scroll-left", {
-            x: -200,
-            scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
-                scrub: 1
-            }
-        });
-
-        gsap.to(".scroll-right", {
-            x: 200,
-            scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
-                scrub: 1
-            }
-        });
-
-        // Smooth Section Reveal
+        // Subtle Section Entrance
         gsap.utils.toArray('.section').forEach(section => {
             gsap.from(section, {
                 opacity: 0,
-                y: 100,
-                duration: 1.5,
-                ease: "expo.out",
+                x: -50,
+                duration: 1,
                 scrollTrigger: {
                     trigger: section,
-                    start: "top 80%",
+                    start: "top 90%",
                 }
             });
         });
