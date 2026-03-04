@@ -3,62 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATIA KURTANIDZE | SYSTEM</title>
+    <title>NATIA KURTANIDZE | CV</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            --mucho-red: #ca5449; /* */
-            --ink: #000000;      /* */
-            --active: #ffffff;   /* */
+            /* Warmer red, two tones up from #ca5449 */
+            --warm-red: #d64535; 
+            --ink: #000000;      
+            --active: #ffffff;   
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            background: var(--mucho-red); 
+            background: var(--warm-red); 
             color: var(--ink); 
-            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; 
             line-height: 0.9;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* HEADER */
+        /* KINETIC SCROLL LINES */
+        .scroll-line {
+            width: 100%;
+            height: 2px;
+            background: var(--ink);
+            position: relative;
+            transform-origin: left;
+        }
+
+        /* HEADER & NAME CLARITY */
         header {
-            height: 70vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             padding: 5vw;
-            border-bottom: 2px solid var(--ink); /* Horizontal line only */
+        }
+
+        .name-block { margin-bottom: 20px; }
+        
+        /* Labeling First/Last for clarity */
+        .name-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 5px;
+            opacity: 0.7;
         }
 
         h1 {
-            font-size: clamp(50px, 12vw, 150px);
+            font-size: clamp(50px, 11vw, 140px);
             font-weight: 900;
             letter-spacing: -0.06em;
             text-transform: uppercase;
-            transition: color 0.3s ease;
+            line-height: 0.8;
         }
-
-        h1:hover { color: var(--active); }
 
         /* SECTION LOGIC */
         .section {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            border-bottom: 2px solid var(--ink); /* Horizontal line only */
-            transition: color 0.3s ease;
+            transition: all 0.5s ease;
+            cursor: crosshair;
         }
 
-        /* TEXT TURNS WHITE ON TOUCH/HOVER */
-        .section:hover, .section:active {
+        /* CLOUDY MODE INTERACTION */
+        .section:hover {
             color: var(--active);
+            text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.4);
+            filter: blur(0.3px);
         }
 
-        .cell { padding: 60px 5vw; grid-column: span 12; }
+        .cell { padding: 80px 5vw; grid-column: span 12; }
 
         @media (min-width: 900px) {
-            .cell-label { grid-column: span 3; border-right: 2px solid var(--ink); }
+            .cell-label { grid-column: span 3; }
             .cell-content { grid-column: span 9; }
         }
 
@@ -85,13 +109,6 @@
             line-height: 1.1;
         }
 
-        .tools-text {
-            font-size: clamp(30px, 8vw, 100px);
-            font-weight: 900;
-            letter-spacing: -0.05em;
-            line-height: 0.8;
-        }
-
         /* NAV */
         nav {
             position: fixed; top: 40px; right: 5vw;
@@ -104,30 +121,15 @@
             font-weight: 900;
             font-size: 12px;
             text-transform: uppercase;
-            border: 1.5px solid var(--ink);
+            border: 2px solid var(--ink);
             padding: 8px 16px;
             transition: 0.3s;
         }
 
         nav a:hover {
             background: var(--ink);
-            color: var(--mucho-red);
+            color: var(--warm-red);
         }
-
-        footer {
-            padding: 15vh 5vw;
-            text-align: center;
-        }
-
-        .footer-link {
-            font-size: 12vw;
-            font-weight: 900;
-            color: var(--ink);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-link:hover { color: var(--active); }
 
     </style>
 </head>
@@ -139,9 +141,17 @@
     </nav>
 
     <header>
-        <span class="label">Natia Kurtanidze // System 2026</span>
-        <h1>NATIA<br>KURTA<br>NIDZE</h1>
+        <div class="name-block">
+            <span class="name-label">First Name</span>
+            <h1>NATIA</h1>
+        </div>
+        <div class="name-block">
+            <span class="name-label">Last Name</span>
+            <h1>KURTANIDZE</h1>
+        </div>
     </header>
+
+    <div class="scroll-line"></div>
 
     <section class="section">
         <div class="cell cell-label"><span class="label">01 / DNA</span></div>
@@ -150,44 +160,55 @@
         </div>
     </section>
 
+    <div class="scroll-line"></div>
+
     <section class="section">
         <div class="cell cell-label"><span class="label">02 / Experience</span></div>
         <div class="cell cell-content">
             <div style="margin-bottom: 80px;">
-                <span class="label" style="opacity: 0.6;">2021 — PRESENT</span>
                 <h2>STK 118</h2>
-                <p>Visual Design Lead. Brand Systems & Digital Architecture.</p>
+                <p>Visual Design Lead. 2021 — PRESENT.</p>
             </div>
             <div>
-                <span class="label" style="opacity: 0.6;">2021 — 2025</span>
                 <h2>MANDARIN</h2>
-                <p>Concept Developer. Editorial Logic & Layout.</p>
+                <p>Concept Developer. 2021 — 2025.</p>
             </div>
         </div>
     </section>
 
+    <div class="scroll-line"></div>
+
     <section class="section">
-        <div class="cell cell-label"><span class="label">03 / Tools</span></div>
+        <div class="cell cell-label"><span class="label">03 / Tech</span></div>
         <div class="cell cell-content">
-            <div class="tools-text">
-                PS / AI / ID / AE<br>
-                PY / JS / HTML / CSS
-            </div>
+            <p>PS / AI / ID / AE / PY / JS / HTML / CSS</p>
         </div>
     </section>
 
-    <section class="section">
-        <div class="cell cell-label"><span class="label">04 / Logic</span></div>
-        <div class="cell cell-content">
-            <span class="label" style="opacity: 0.6;">HARVARD UNIVERSITY</span>
-            <h2>CS50x</h2>
-            <p>Foundation in Computer Science. Algorithms and logic.</p>
-        </div>
-    </section>
+    <div class="scroll-line"></div>
 
-    <footer>
-        <a href="mailto:natia.kurtanidze55@gmail.com" class="footer-link">SAY HELLO</a>
-    </footer>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
 
+        // Kinetic Line Movement (Stretches on scroll)
+        gsap.utils.toArray('.scroll-line').forEach(line => {
+            gsap.fromTo(line, 
+                { scaleX: 0.1 }, 
+                { 
+                    scaleX: 1, 
+                    duration: 1, 
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: line,
+                        start: "top 95%",
+                        scrub: 1
+                    }
+                }
+            );
+        });
+
+        // Hover Sound Effect (Optional addition for "Wow")
+        // Just visual "Cloudy Mode" implemented via CSS filter/shadow
+    </script>
 </body>
 </html>
