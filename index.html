@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATIA KURTANIDZE | CV</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>NATIA KURTANIDZE | SYSTEM</title>
     <style>
         :root {
-            --mucho-red: #ca5449; /* Your specific red */
-            --ink: #000000;      /* Initial Black Text */
-            --active: #ffffff;   /* Hover/Touch White Text */
+            --mucho-red: #ca5449; /* */
+            --ink: #000000;      /* */
+            --active: #ffffff;   /* */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,14 +22,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 1px BLACK GRID LINES */
-        .grid-line-v {
-            position: fixed;
-            top: 0; left: 5vw; width: 1px; height: 100%;
-            background: rgba(0,0,0,0.15);
-            z-index: -1;
-        }
-
         /* HEADER */
         header {
             height: 70vh;
@@ -38,7 +29,7 @@
             flex-direction: column;
             justify-content: flex-end;
             padding: 5vw;
-            border-bottom: 2px solid var(--ink);
+            border-bottom: 2px solid var(--ink); /* Horizontal line only */
         }
 
         h1 {
@@ -55,11 +46,11 @@
         .section {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            border-bottom: 2px solid var(--ink);
+            border-bottom: 2px solid var(--ink); /* Horizontal line only */
             transition: color 0.3s ease;
         }
 
-        /* THE WOW EFFECT: TEXT TURNS WHITE ON TOUCH/HOVER */
+        /* TEXT TURNS WHITE ON TOUCH/HOVER */
         .section:hover, .section:active {
             color: var(--active);
         }
@@ -94,7 +85,6 @@
             line-height: 1.1;
         }
 
-        /* TOOLS GRID */
         .tools-text {
             font-size: clamp(30px, 8vw, 100px);
             font-weight: 900;
@@ -142,8 +132,6 @@
     </style>
 </head>
 <body>
-
-    <div class="grid-line-v"></div>
 
     <nav>
         <a href="https://natia-k.github.io/my-portfolio/">Portfolio</a>
