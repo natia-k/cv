@@ -3,206 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATIA KURTANIDZE | VISUAL SYSTEM</title>
+    <title>NATIA KURTANIDZE | SYSTEM</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            --bg: #080808; /* Deep black */
-            --ink: #f4f4f2; /* Off-white/Bone */
-            --mucho-red: #ff3300; /* Neon Red */
-            --grid-color: #222222;
+            /* Warmer, more sophisticated grey */
+            --bg: #dbdbdb; 
+            --ink: #0a0a0a;
+            --mucho-red: #ff3300;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
         
         body { 
             background: var(--bg); 
             color: var(--ink); 
             font-family: 'Inter', 'Helvetica Neue', sans-serif; 
             overflow-x: hidden;
-            line-height: 1.3;
+            line-height: 1.1;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* NOISE TEXTURE FOR SOUL */
-        .noise {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 999; pointer-events: none; opacity: 0.03;
-            background: url('https://media.giphy.com/media/oEI9uWUic8pTq/giphy.gif');
+        /* PREMIUM NOISE OVERLAY */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 1000;
         }
 
-        /* CUSTOM KINETIC CURSOR */
-        #cursor {
-            position: fixed; width: 8px; height: 8px; background: var(--mucho-red);
-            border-radius: 50%; pointer-events: none; z-index: 10000;
-            transition: transform 0.1s ease-out;
+        /* NAV */
+        nav {
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            border-bottom: 2px solid var(--ink);
         }
 
-        /* LAYOUT & GRID */
-        .nav-id {
-            padding: 30px; display: flex; justify-content: space-between;
-            font-size: 10px; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 0.3em; border-bottom: 1px solid var(--grid-color);
-        }
-
+        /* HERO - KINETIC INTERACTION */
         header {
-            height: 90vh; display: flex; align-items: flex-end; padding: 5vw;
-            border-bottom: 1px solid var(--grid-color);
+            padding: 5vw;
+            border-bottom: 2px solid var(--ink);
+            perspective: 1000px;
         }
 
         h1 {
-            font-size: clamp(60px, 18vw, 240px); font-weight: 900;
-            line-height: 0.75; letter-spacing: -0.07em; text-transform: uppercase;
+            font-size: clamp(60px, 20vw, 240px);
+            font-weight: 900;
+            line-height: 0.75;
+            letter-spacing: -0.07em;
+            text-transform: uppercase;
+            transition: letter-spacing 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        h1:hover {
+            letter-spacing: -0.02em; /* Subtle expansion trick */
+            color: var(--mucho-red);
+        }
+
+        /* GRID SYSTEM */
         .section-row {
-            display: grid; grid-template-columns: repeat(12, 1fr);
-            border-bottom: 1px solid var(--grid-color);
-            background: var(--bg);
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            border-bottom: 2px solid var(--ink);
         }
 
         .cell { padding: 8vw 5vw; grid-column: span 12; }
         @media (min-width: 900px) {
-            .cell-7 { grid-column: span 7; border-right: 1px solid var(--grid-color); }
-            .cell-5 { grid-column: span 5; }
+            .cell-8 { grid-column: span 8; border-right: 2px solid var(--ink); }
+            .cell-4 { grid-column: span 4; }
         }
 
         /* TYPOGRAPHY */
         .label {
-            font-size: 11px; font-weight: 900; color: var(--mucho-red);
-            text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 40px; display: block;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--mucho-red);
+            letter-spacing: 0.3em;
+            margin-bottom: 40px;
+            display: block;
         }
 
         h2 { 
-            font-size: clamp(32px, 5vw, 90px); font-weight: 900; 
-            text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.9; margin-bottom: 25px;
+            font-size: clamp(32px, 6vw, 100px); 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            letter-spacing: -0.05em; 
+            margin-bottom: 20px;
         }
 
-        p { font-size: clamp(18px, 2vw, 24px); font-weight: 400; color: #aaa; max-width: 600px; }
-        b { color: var(--ink); }
+        p { font-size: clamp(18px, 2vw, 26px); font-weight: 500; max-width: 750px; }
 
-        /* EXPERIENCE ENTRIES */
-        .exp-item { margin-bottom: 80px; transition: 0.4s; }
-        .exp-item:hover { transform: translateX(10px); }
-        .date { font-family: monospace; font-size: 12px; color: #555; margin-bottom: 10px; display: block; }
+        /* DESIGNER PERSONALITY */
+        .personality-text {
+            font-size: clamp(24px, 4vw, 50px);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
 
-        /* KINETIC MARQUEE */
+        /* SHARP EXPERIENCE ENTRIES */
+        .exp-item { margin-bottom: 60px; }
+        .exp-meta { font-family: monospace; font-size: 12px; opacity: 0.6; margin-bottom: 10px; display: block; }
+
+        /* THE MARQUEE - SPEED INTERACTION */
         .marquee {
-            padding: 40px 0; background: var(--mucho-red); color: var(--bg);
-            overflow: hidden; white-space: nowrap; font-weight: 900; font-size: 5vw; text-transform: uppercase;
+            background: var(--ink);
+            color: var(--bg);
+            padding: 30px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 900;
+            font-size: 4vw;
+            text-transform: uppercase;
         }
 
-        /* FOOTER ACTION */
-        .contact-link {
-            display: block; padding: 10vw 5vw; text-align: center;
-            font-size: clamp(50px, 12vw, 180px); font-weight: 900;
-            text-transform: uppercase; text-decoration: none; color: var(--ink);
-            transition: 0.5s;
+        .marquee-inner { display: inline-block; }
+
+        /* POSTER MOMENT (TOOLKIT) */
+        .toolkit-poster {
+            background: var(--mucho-red);
+            color: var(--ink);
+            padding: 10vw 5vw;
+            text-align: center;
+            overflow: hidden;
         }
-        .contact-link:hover { color: var(--mucho-red); letter-spacing: 0.05em; }
+
+        .toolkit-poster h2 { font-size: 15vw; margin: 0; line-height: 0.8; }
+
+        /* FOOTER */
+        .contact-trigger {
+            display: block;
+            padding: 10vw 5vw;
+            text-align: center;
+            font-size: 10vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ink);
+            transition: 0.4s;
+        }
+        .contact-trigger:hover { background: var(--mucho-red); color: var(--bg); }
 
     </style>
 </head>
 <body>
 
-    <div class="noise"></div>
-    <div id="cursor"></div>
-
-    <nav class="nav-id">
-        <span>Natia Kurtanidze</span>
-        <span>Archive // 2026</span>
+    <nav>
+        <span>Natia Kurtanidze // System 2026</span>
+        <span>Berlin // Worldwide</span>
     </nav>
 
     <header>
-        <h1 class="reveal-type">NATIA<br><span style="color:var(--mucho-red)">KURTA</span><br>NIDZE</h1>
+        <h1 id="hero-title">NATIA<br>KURTA<br>NIDZE</h1>
     </header>
 
     <section class="section-row">
-        <div class="cell cell-7">
-            <span class="label">01 // Profile</span>
-            <p>Visual Designer specializing in <b>High-Impact Brand Identities</b>, <b>Kinetic Typography</b>, and <b>Digital Architecture</b>. Currently leading visuals at STK 118 GmbH in Berlin.</p>
-        </div>
-        <div class="cell cell-5">
-            <span class="label">02 // Links</span>
-            <p><a href="https://natia-k.github.io/my-portfolio/" style="color:var(--ink); text-decoration:none;">PORTFOLIO ↗</a></p>
-            <p><a href="mailto:natia.kurtanidze55@gmail.com" style="color:var(--ink); text-decoration:none;">EMAIL ↗</a></p>
-        </div>
-    </section>
-
-    <section class="section-row">
-        <div class="cell cell-7">
-            <span class="label">03 // Experience</span>
-            
-            <div class="exp-item">
-                <span class="date">2021 — PRESENT</span>
-                <h2>STK 118 GMBH</h2>
-                <p>Lead Visual Designer. Creating brand systems and UI/UX architectures for digital evolution.</p>
-            </div>
-
-            <div class="exp-item">
-                <span class="date">2021 — 2025</span>
-                <h2>MANDARIN FACILITY</h2>
-                <p>Concept Developer. Structural design and complex layout orchestration.</p>
-            </div>
-
-            <div class="exp-item">
-                <span class="date">2017 — 2020</span>
-                <h2>FREELANCE</h2>
-                <p>Developing bespoke visual identities and digital art for international clients.</p>
-            </div>
-        </div>
-
-        <div class="cell cell-5">
-            <span class="label">04 // Education</span>
-            <span class="date">HARVARD UNIVERSITY</span>
-            <h2>CS50x</h2>
-            <p>Computer Science foundation. Algorithms, C, Python, and Software Systems.</p>
-        </div>
-    </section>
-
-    <section class="section-row">
         <div class="cell">
-            <span class="label">05 // Stack</span>
-            <h2 style="font-size: 10vw; line-height: 0.8;">ADOBE. PYTHON. JS. HTML. CSS. BRANDING.</h2>
+            <span class="label">01 // DNA</span>
+            <p class="personality-text">
+                Visual Designer focused on brand systems, editorial layouts and digital surfaces. 
+                I code my own structures because I like controlling how design lives on the screen.
+            </p>
         </div>
     </section>
 
-    <div class="marquee">
-        <div class="marquee-inner">
-            AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — 
+    <section class="section-row">
+        <div class="cell cell-8">
+            <span class="label">02 // Systems & History</span>
+            <div class="exp-item">
+                <span class="exp-meta">2021 — PRESENT</span>
+                <h2>STK 118 GMBH</h2>
+                <p>Brand systems / UI structures / Digital product identities.</p>
+            </div>
+            <div class="exp-item">
+                <span class="exp-meta">2021 — 2025</span>
+                <h2>MANDARIN FACILITY</h2>
+                <p>Editorial architecture / Visual logic / Layout orchestration.</p>
+            </div>
+            <div class="exp-item">
+                <span class="exp-meta">2017 — 2020</span>
+                <h2>FREELANCE</h2>
+                <p>Bespoke identity / Kinetic graphics / Digital illustration.</p>
+            </div>
+        </div>
+        <div class="cell cell-4">
+            <span class="label">03 // Foundation</span>
+            <span class="exp-meta">HARVARD UNIVERSITY</span>
+            <h2>CS50x</h2>
+            <p>Computer Science foundation. Algorithms, logic, and software architecture.</p>
+        </div>
+    </section>
+
+    <section class="toolkit-poster">
+        <span class="label" style="color:var(--ink)">04 // Tools</span>
+        <h2 class="kinetic-tools">PS.AI.ID.AE.PY.JS.</h2>
+    </section>
+
+    <div class="marquee" id="marquee-container">
+        <div class="marquee-inner" id="marquee-text">
+            AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — DESIGN + CODE — AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — DESIGN + CODE — 
         </div>
     </div>
 
-    <a href="mailto:natia.kurtanidze55@gmail.com" class="contact-link">CONTACT</a>
+    <a href="mailto:natia.kurtanidze55@gmail.com" class="contact-trigger">
+        HIRE_ME_NOW
+    </a>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // CURSOR
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+        // MARQUEE ANIMATION
+        let marqueeTween = gsap.to("#marquee-text", {
+            xPercent: -50,
+            repeat: -1,
+            duration: 20,
+            ease: "none"
         });
 
-        // REVEAL ANIMATIONS
-        gsap.from(".reveal-type", {
-            y: 100, opacity: 0, duration: 1.5, ease: "expo.out"
+        // Speed change on hover trick
+        const marqueeContainer = document.getElementById('marquee-container');
+        marqueeContainer.addEventListener('mouseenter', () => marqueeTween.timeScale(5));
+        marqueeContainer.addEventListener('mouseleave', () => marqueeTween.timeScale(1));
+
+        // TOOLKIT SCROLL SCALE (POSTER MOMENT)
+        gsap.to(".kinetic-tools", {
+            scrollTrigger: {
+                trigger: ".toolkit-poster",
+                start: "top bottom",
+                scrub: 1
+            },
+            scale: 1.2,
+            letterSpacing: "0.05em"
         });
 
-        // SCROLL SKEW (DUMBAR EFFECT)
+        // HERO REVEAL
+        gsap.from("#hero-title", {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "expo.out"
+        });
+
+        // SECTION REVEALS
         gsap.utils.toArray('.section-row').forEach(row => {
             gsap.from(row, {
                 scrollTrigger: {
                     trigger: row,
                     start: "top 90%",
                 },
-                opacity: 0, y: 50, duration: 1, ease: "power3.out"
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power3.out"
             });
-        });
-
-        // MARQUEE
-        gsap.to(".marquee-inner", {
-            xPercent: -50, repeat: -1, duration: 20, ease: "linear"
         });
     </script>
 </body>
