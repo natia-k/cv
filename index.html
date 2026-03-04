@@ -42,7 +42,7 @@
             letter-spacing: -0.06em;
             text-transform: uppercase;
             line-height: 0.8;
-            margin-left: -0.05em; /* Optical alignment */
+            margin-left: -0.05em;
         }
 
         .hero-sub {
@@ -52,7 +52,6 @@
             letter-spacing: 0.15em;
             margin-top: 25px;
             display: block;
-            /* Precise alignment with the start of the H1 */
             padding-left: 0; 
         }
 
@@ -123,30 +122,34 @@
 
         nav a:hover { background: var(--ink); color: var(--warm-red); }
 
-        /* UPDATED FOOTER */
+        /* CENTERED & SMALLER FOOTER */
         footer {
-            padding: 15vh 5vw;
+            padding: 20vh 5vw;
             border-top: 2px solid var(--ink);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .footer-question {
-            font-size: clamp(40px, 8vw, 120px);
+            font-size: clamp(30px, 5vw, 80px); /* Reduced scale */
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -0.05em;
-            line-height: 0.85;
-            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            margin-bottom: 25px;
         }
 
         .footer-sub-question {
-            font-size: clamp(20px, 3vw, 40px);
+            font-size: clamp(18px, 2.5vw, 32px); /* Reduced scale */
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
             color: var(--ink);
             text-decoration: none;
             transition: 0.4s;
-            display: block;
+            display: inline-block;
         }
 
         .footer-sub-question:hover {
@@ -220,7 +223,7 @@
             <div style="margin-bottom: 50px;">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2017 — 2020</span>
                 <h2>Freelance</h2>
-                <p>Markenentwicklung, Logodesign, Social Media, digitale Porträts.</p>
+                <p>Brand development, Logodesign, Social Media, digitale Porträts.</p>
             </div>
             <div>
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/2015 — 10/2017</span>
