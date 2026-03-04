@@ -24,7 +24,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* KINETIC SCROLL LINES */
         .scroll-line {
             width: 100%;
             height: 2px;
@@ -33,7 +32,6 @@
             z-index: 5;
         }
 
-        /* HEADER */
         header {
             padding: 12vh 5vw 8vh 5vw;
         }
@@ -44,22 +42,24 @@
             letter-spacing: -0.06em;
             text-transform: uppercase;
             line-height: 0.8;
+            margin-left: -0.04em; /* Optical alignment for 'N' */
         }
 
         .hero-sub {
             font-size: 14px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-top: 20px;
+            letter-spacing: 0.15em;
+            margin-top: 25px;
             display: block;
+            /* Fixed alignment: no more sticking out */
+            padding-left: 2px; 
         }
 
-        /* FIXED CLOUDY MODE */
         .section {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: color 0.4s ease;
             cursor: crosshair;
         }
 
@@ -98,9 +98,6 @@
             line-height: 1.2;
         }
 
-        .edu-item { margin-bottom: 40px; }
-
-        /* REFINED TOOLKIT SCALE */
         .tools-text {
             font-size: clamp(24px, 4vw, 45px);
             font-weight: 900;
@@ -124,17 +121,37 @@
             transition: 0.3s;
         }
 
-        nav a:hover {
-            background: var(--ink);
-            color: var(--warm-red);
+        nav a:hover { background: var(--ink); color: var(--warm-red); }
+
+        /* NEW FOOTER STYLE */
+        footer {
+            padding: 15vh 5vw;
+            border-top: 2px solid var(--ink);
         }
 
-        footer { padding: 15vh 5vw; text-align: center; }
+        .footer-question {
+            font-size: clamp(30px, 6vw, 80px);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            margin-bottom: 40px;
+            max-width: 80%;
+            line-height: 0.9;
+        }
+
         .footer-link {
-            font-size: 8vw;
+            font-size: clamp(40px, 10vw, 120px);
             font-weight: 900;
             color: var(--ink);
             text-decoration: none;
+            transition: 0.4s;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: var(--active);
+            text-shadow: 0 0 20px white;
+            transform: skewX(-5deg);
         }
     </style>
 </head>
@@ -167,20 +184,20 @@
     <section class="section">
         <div class="cell cell-label"><span class="label">02 / Education</span></div>
         <div class="cell cell-content">
-            <div class="edu-item">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">HarvardX</span>
+            <div style="margin-bottom: 40px;">
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">HarvardX </span>
                 <h2>CS50x</h2>
                 <p>C, Python, HTML, CSS, JavaScript, Algorithmen, Datenstrukturen.</p>
             </div>
-            <div class="edu-item">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ILIA STATE UNIVERSITY</span>
-                <h2>Grafikdesign und Bildende Kunst</h2>
+            <div style="margin-bottom: 40px;">
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ILIA STATE UNIVERSITY </span>
+                <h2>Grafikdesign und Bildende Kunst </h2>
             </div>
-            <div class="edu-item">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ACADEMY OF DIGITAL INDUSTRY</span>
-                <p>• Grafikdesign und 3D-Design<br>
-                   • UI/UX Design, Web- und Mobile Design<br>
-                   • Markenentwicklung (Brand Design)</p>
+            <div>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ACADEMY OF DIGITAL INDUSTRY </span>
+                <p>• Grafikdesign und 3D-Design <br>
+                   • UI/UX Design, Web- und Mobile Design <br>
+                   • Markenentwicklung (Brand Design) </p>
             </div>
         </div>
     </section>
@@ -191,24 +208,56 @@
         <div class="cell cell-label"><span class="label">03 / Experience</span></div>
         <div class="cell cell-content">
             <div style="margin-bottom: 50px;">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 2025</span>
-                <h2>STK 118 GmbH</h2>
-                <p>Visual Design Lead. Systems & Digital Architecture.</p>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 2025 </span>
+                <h2>STK 118 GmbH </h2>
+                <p>Gestaltung von Print- und Digitalmedien, Webseiten-Design.</p>
             </div>
             <div style="margin-bottom: 50px;">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 03/2025</span>
-                <h2>MANDARIN FACILITY</h2>
-                <p>Concept Developer. Editorial Logic & Layout.</p>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 03/2025 </span>
+                <h2>MANDARIN FACILITY </h2>
+                <p>Visuelle Konzepte, Layouts und Unterstützung im Designprozess.</p>
             </div>
             <div style="margin-bottom: 50px;">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2017 — 2020</span>
-                <h2>Freelance</h2>
-                <p>Brand development, Logodesign, and digital portraits.</p>
-            </div>
-            <div style="margin-bottom: 50px;">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/2015 — 10/2017</span>
-                <h2>Marketingagentur „Fortis"</h2>
-                <p>Branding, digitale Werbung und Kampagnengestaltung.</p>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2017 — 2020 </span>
+                <h2>Freelance </h2>
+                <p>Markenentwicklung, Logodesign, Social Media, digitale Porträts.</p>
             </div>
             <div>
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/2015 — 10/2017 </span>
+                <h2>Marketingagentur „Fortis" </h2>
+                <p>Branding, digitale Werbung und Kampagnengestaltung.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="scroll-line"></div>
+
+    <section class="section">
+        <div class="cell cell-label"><span class="label">04 / Toolkit</span></div>
+        <div class="cell cell-content">
+            <div class="tools-text">
+                Adobe PS, AI, ID, AE, CorelDRAW  / 
+                Python, C, HTML, CSS, JS  / 
+                Git & GitHub, VS Code 
+            </div>
+        </div>
+    </section>
+
+    <div class="scroll-line"></div>
+
+    <footer>
+        <div class="footer-question">So what exactly are we doing?</div>
+        <a href="mailto:natia.kurtanidze55@gmail.com" class="footer-link">SAY_HELLO</a>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.scroll-line').forEach(line => {
+            gsap.fromTo(line, { scaleX: 0 }, { 
+                scaleX: 1, duration: 1, ease: "none",
+                scrollTrigger: { trigger: line, start: "top 98%", scrub: true }
+            });
+        });
+    </script>
+</body>
+</html>
