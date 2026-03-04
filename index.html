@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natia Kurtanidze | Visual Designer</title>
+    <meta name="description" content="Visual Designer specialized in brand identity, packaging, and digital experiences.">
+    <meta property="og:title" content="Natia Kurtanidze | Portfolio">
+    <meta property="og:description" content="Berlin-based Visual Designer & Developer.">
+    
+    <style>
+        :root {
+            --bg: #fdfbf7; 
+            --text: #1a1a1a; 
+            --accent: #ff0000; 
+            --dim: #888888;
+            --main-font: "Inter", "Helvetica Neue", Arial, sans-serif;
+            --mono: "SFMono-Regular", Consolas, monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: var(--main-font); 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            cursor: none; /* Hide real cursor */
+        }
+
+        /* SMOOTH CUSTOM CURSOR */
+        #cursor {
+            position: fixed; 
+            width: 8px; 
+            height: 8px; 
+            background: var(--text); 
+            border-radius: 50%; 
+            pointer-events: none; 
+            z-index: 20000;
+            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            mix-blend-mode: difference; /* Inverts color over text for visibility */
+        }
+
+        .cursor-hover { transform: scale(4); background: var(--accent) !important; }
+
+        /* NAVIGATION */
+        nav.top-nav {
+            position: fixed; 
+            top: 40px; 
+            left: 5%; 
+            right: 5%;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .logo { font-weight: 900; text-decoration: none; color: var(--text); letter-spacing: -0.05em; font-size: 18px; text-transform: uppercase; }
+        .project-id { font-family: var(--mono); font-size: 10px; color: var(--dim); letter-spacing: 0.2em; }
+
+        /* HERO */
+        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-left: 10%; }
+        .hero-name { font-size: clamp(60px, 12vw, 180px); font-weight: 900; line-height: 0.85; letter-spacing: -0.07em; text-transform: uppercase; }
+        .hero-sub { font-family: var(--mono); font-size: 11px; color: var(--dim); margin-top: 25px; letter-spacing: 0.3em; text-transform: uppercase; }
+
+        /* SECTIONS */
+        .section-wrap { margin-bottom: 15vh; width: 100%; display: flex; flex-direction: column; padding: 0 10%; }
+        .section-wrap:nth-child(even) { align-items: flex-end; text-align: right; }
+        .section-wrap:nth-child(odd) { align-items: flex-start; text-align: left; }
+
+        .section-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; color: var(--dim); letter-spacing: 0.3em; margin-bottom: 30px; }
+        .content-block { max-width: 600px; }
+
+        h3 { font-size: clamp(28px, 4vw, 42px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; margin-bottom: 10px; }
+        .sub-meta { font-family: var(--mono); font-size: 10px; color: var(--dim); text-transform: uppercase; margin-bottom: 15px; display: block; }
+        p { font-size: 19px; line-height: 1.6; color: var(--text); font-weight: 400; }
+
+        /* SKILLS */
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; max-width: 600px; }
+        .skill-cat b { display: block; font-family: var(--mono); font-size: 11px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.2em; }
+        .skill-cat span { display: block; font-size: 15px; margin-bottom: 5px; opacity: 0.7; }
+
+        /* FOOTER */
+        .footer-nav { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; border-top: 1px solid #eee; }
+        .nav-large-text { font-size: clamp(50px, 10vw, 150px); font-weight: 900; text-decoration: none; color: transparent; -webkit-text-stroke: 1px #ccc; text-transform: uppercase; transition: 0.4s; }
+        .nav-large-text:hover { color: var(--accent); -webkit-text-stroke: 1px var(--accent); }
+
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+            #cursor { display: none; }
+            .section-wrap { align-items: flex-start !important; text-align: left !important; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+
+    <nav class="top-nav">
+        <a href="#" class="logo">NATIA STUDIO</a>
+        <div class="project-id">2026_EDITION</div>
+    </nav>
+
+    <header>
+        <h1 class="hero-name">NATIA<br>KURTANIDZE</h1>
+        <div class="hero-sub">Visual Designer // Berlin, DE</div>
+    </header>
+
+    <main class="vessel">
+        <section class="section-wrap">
+            <span class="section-label">01 // Info</span>
+            <div class="content-block">
+                <p>Specialized in brand identity and digital interfaces. Currently shaping visual languages at STK 118 GmbH.</p>
+            </div>
+        </section>
+
+        <section class="section-wrap">
+            <span class="section-label">02 // Experience</span>
+            <div class="content-block">
+                <span class="sub-meta">2021 — PRESENT</span>
+                <h3>STK 118 GmbH</h3>
+                <p>Visual branding and UI/UX design for digital products.</p>
+            </div>
+        </section>
+
+        <section class="section-wrap">
+            <span class="section-label">03 // Toolkit</span>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <b>Creative</b>
+                    <span>Adobe Creative Cloud</span>
+                    <span>UI / UX Design</span>
+                    <span>Brand Strategy</span>
+                </div>
+                <div class="skill-cat">
+                    <b>Technical</b>
+                    <span>HTML / CSS / JS</span>
+                    <span>Python / Git</span>
+                    <span>CS50x Certified</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-nav">
+        <span class="section-label">Contact</span>
+        <a href="mailto:natia.kurtanidze55@gmail.com" class="nav-large-text">EMAIL ME</a>
+    </footer>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add hover effect to all links
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            link.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
+    </script>
+</body>
+</html>
