@@ -37,8 +37,10 @@
             padding: 12vh 5vw 8vh 5vw;
         }
 
+        .name-block { margin-bottom: 5px; }
+        
         h1 {
-            font-size: clamp(60px, 14vw, 180px);
+            font-size: clamp(50px, 12vw, 160px);
             font-weight: 900;
             letter-spacing: -0.06em;
             text-transform: uppercase;
@@ -58,13 +60,14 @@
         .section {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            transition: color 0.4s ease;
+            transition: color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: crosshair;
         }
 
         .section:hover {
             color: var(--active);
-            text-shadow: 0 0 15px rgba(255,255,255,0.8);
+            /* Refined glow: sharp and clear white */
+            text-shadow: 0 0 12px rgba(255,255,255,0.7);
         }
 
         .cell { padding: 60px 5vw; grid-column: span 12; }
@@ -99,7 +102,7 @@
 
         .edu-item { margin-bottom: 40px; }
 
-        /* REFINED TOOLKIT - Small Scale */
+        /* REFINED TOOLKIT - Smaller technical font */
         .tools-text {
             font-size: clamp(24px, 4vw, 45px);
             font-weight: 900;
@@ -134,6 +137,7 @@
             font-weight: 900;
             color: var(--ink);
             text-decoration: none;
+            transition: 0.4s;
         }
     </style>
 </head>
@@ -146,7 +150,8 @@
 
     <header>
         <div class="name-block">
-            <h1>NATIA<br>KURTANIDZE</h1>
+            <h1>NATIA</h1>
+            <h1>KURTANIDZE</h1>
             <span class="hero-sub">Visual Designer — Berlin</span>
         </div>
     </header>
@@ -154,31 +159,31 @@
     <div class="scroll-line"></div>
 
     <section class="section">
-        <div class="cell cell-label"><span class="label">01 / ÜBER MICH</span></div>
+        <div class="cell cell-label"><span class="label">01 / DNA</span></div>
         <div class="cell cell-content">
-            <p>Ich bin eine leidenschaftliche Gestalterin mit einem Herz für Ästhetik und einem wachsenden Interesse an Softwareentwicklung. Ich liebe es, kreative Ideen mit funktionalem Denken zu verbinden[cite: 7, 8]. Ich arbeite gerne im Team, denke lösungsorientiert und freue mich darauf, meine gestalterische Perspektive in technische Projekte einzubringen[cite: 9].</p>
+            <p>Visual Designer building brand systems + editorial layouts. I code my own frontends to control type, rhythm, and interaction.</p>
         </div>
     </section>
 
     <div class="scroll-line"></div>
 
     <section class="section">
-        <div class="cell cell-label"><span class="label">02 / AUSBILDUNG</span></div>
+        <div class="cell cell-label"><span class="label">02 / Education</span></div>
         <div class="cell cell-content">
             <div class="edu-item">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">HarvardX</span>
                 <h2>CS50x</h2>
-                <p>C, Python, HTML, CSS, JavaScript, Algorithmen, Datenstrukturen[cite: 13].</p>
+                [cite_start]<p>C, Python, HTML, CSS, JavaScript, Algorithmen, Datenstrukturen[cite: 13].</p>
             </div>
             <div class="edu-item">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ILIA STATE UNIVERSITY</span>
-                <h2>Grafikdesign und Bildende Kunst [cite: 11, 12]</h2>
+                [cite_start]<h2>Grafikdesign und Bildende Kunst [cite: 12]</h2>
             </div>
             <div class="edu-item">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ACADEMY OF DIGITAL INDUSTRY</span>
-                <p>• Grafikdesign und 3D-Design [cite: 12]<br>
-                   • UI/UX Design, Web- und Mobile Design [cite: 12]<br>
-                   • Markenentwicklung (Brand Design) [cite: 12]</p>
+                [cite_start]<p>• Grafikdesign und 3D-Design [cite: 12]<br>
+                   [cite_start]• UI/UX Design, Web- und Mobile Design [cite: 12]<br>
+                   [cite_start]• Markenentwicklung (Brand Design) [cite: 12]</p>
             </div>
         </div>
     </section>
@@ -186,32 +191,32 @@
     <div class="scroll-line"></div>
 
     <section class="section">
-        <div class="cell cell-label"><span class="label">03 / BERUFSERFAHRUNG</span></div>
+        <div class="cell cell-label"><span class="label">03 / Experience</span></div>
         <div class="cell cell-content">
             <div style="margin-bottom: 50px;">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 2025</span>
                 <h2>STK 118 GmbH</h2>
-                <p>Gestaltung von Print- und Digitalmedien, Webseiten-Design[cite: 22].</p>
+                <p>Visual Design Lead. [cite_start]Systems & Digital Architecture[cite: 22].</p>
             </div>
             <div style="margin-bottom: 50px;">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 03/2025</span>
-                <h2>Mandarin Facility Services</h2>
-                <p>Visuelle Konzepte, Layouts und Unterstützung im Designprozess[cite: 23].</p>
+                <h2>MANDARIN FACILITY</h2>
+                <p>Concept Developer. [cite_start]Editorial Logic & Layout[cite: 23].</p>
             </div>
             <div style="margin-bottom: 50px;">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2017 — 2020</span>
-                <h2>Freelancerin</h2>
-                <p>Markenentwicklung, Logodesign, Social Media, digitale Porträts[cite: 24].</p>
+                <h2>Freelance</h2>
+                [cite_start]<p>Brand development, Logodesign, and digital portraits[cite: 24].</p>
             </div>
             <div style="margin-bottom: 50px;">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/2015 — 10/2017</span>
                 <h2>Marketingagentur „Fortis"</h2>
-                <p>Branding, digitale Werbung und Kampagnengestaltung[cite: 25].</p>
+                [cite_start]<p>Branding, digitale Werbung und Kampagnengestaltung[cite: 25].</p>
             </div>
             <div>
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/2013 — 09/2015</span>
                 <h2>Gesundheitsklinik „ZD"</h2>
-                <p>Büroleiterin & Versicherungsagentin[cite: 26].</p>
+                [cite_start]<p>Büroleiterin & Versicherungsagentin[cite: 26].</p>
             </div>
         </div>
     </section>
@@ -219,12 +224,12 @@
     <div class="scroll-line"></div>
 
     <section class="section">
-        <div class="cell cell-label"><span class="label">04 / TECHNISCHE KENNTNISSE</span></div>
+        <div class="cell cell-label"><span class="label">04 / Toolkit</span></div>
         <div class="cell cell-content">
             <div class="tools-text">
-                Adobe Photoshop, Illustrator, InDesign, After Effects, CorelDRAW [cite: 19, 20] / 
-                HTML, CSS, JavaScript, Python, C [cite: 15] / 
-                Git & GitHub, VS Code [cite: 16, 17]
+                [cite_start]Adobe PS, AI, ID, AE, CorelDRAW [cite: 19, 20] / 
+                [cite_start]Python, C, HTML, CSS, JS [cite: 15] / 
+                [cite_start]Git & GitHub, VS Code [cite: 16, 17]
             </div>
         </div>
     </section>
