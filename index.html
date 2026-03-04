@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATIA KURTANIDZE | CV</title>
+    <title>NATIA KURTANIDZE | SYSTEM</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            /* Warmer red, two tones up from #ca5449 */
             --warm-red: #d64535; 
             --ink: #000000;      
             --active: #ffffff;   
@@ -30,59 +29,50 @@
             width: 100%;
             height: 2px;
             background: var(--ink);
-            position: relative;
             transform-origin: left;
         }
 
-        /* HEADER & NAME CLARITY */
+        /* HEADER */
         header {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 5vw;
+            padding: 10vh 5vw 5vh 5vw;
         }
 
-        .name-block { margin-bottom: 20px; }
-        
-        /* Labeling First/Last for clarity */
+        .name-block { margin-bottom: 10px; }
         .name-label {
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             font-weight: 900;
+            opacity: 0.6;
             display: block;
-            margin-bottom: 5px;
-            opacity: 0.7;
+            margin-bottom: 4px;
         }
 
         h1 {
-            font-size: clamp(50px, 11vw, 140px);
+            font-size: clamp(50px, 12vw, 160px);
             font-weight: 900;
             letter-spacing: -0.06em;
             text-transform: uppercase;
             line-height: 0.8;
         }
 
-        /* SECTION LOGIC */
+        /* CLOUDY MODE INTERACTION */
         .section {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            transition: all 0.5s ease;
+            transition: all 0.4s ease;
             cursor: crosshair;
         }
 
-        /* CLOUDY MODE INTERACTION */
         .section:hover {
             color: var(--active);
-            text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.4);
-            filter: blur(0.3px);
+            text-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 30px rgba(255,255,255,0.3);
         }
 
-        .cell { padding: 80px 5vw; grid-column: span 12; }
+        .cell { padding: 60px 5vw; grid-column: span 12; }
 
         @media (min-width: 900px) {
-            .cell-label { grid-column: span 3; }
+            .cell-label { grid-column: span 3; border-right: 2px solid var(--ink); }
             .cell-content { grid-column: span 9; }
         }
 
@@ -109,13 +99,21 @@
             line-height: 1.1;
         }
 
-        /* NAV */
-        nav {
-            position: fixed; top: 40px; right: 5vw;
-            display: flex; gap: 20px; z-index: 100;
+        /* TOOLS GRID */
+        .tools-text {
+            font-size: clamp(30px, 8vw, 90px);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            line-height: 0.8;
         }
 
-        nav a {
+        /* NAV & LINKS */
+        nav {
+            position: fixed; top: 40px; right: 5vw;
+            display: flex; gap: 15px; z-index: 100;
+        }
+
+        nav a, .network-link {
             color: var(--ink);
             text-decoration: none;
             font-weight: 900;
@@ -126,10 +124,20 @@
             transition: 0.3s;
         }
 
-        nav a:hover {
+        nav a:hover, .network-link:hover {
             background: var(--ink);
             color: var(--warm-red);
         }
+
+        footer { padding: 10vh 5vw; text-align: center; }
+        .footer-link {
+            font-size: 10vw;
+            font-weight: 900;
+            color: var(--ink);
+            text-decoration: none;
+            transition: 0.4s;
+        }
+        .footer-link:hover { color: var(--active); text-shadow: 0 0 20px white; }
 
     </style>
 </head>
@@ -163,15 +171,12 @@
     <div class="scroll-line"></div>
 
     <section class="section">
-        <div class="cell cell-label"><span class="label">02 / Experience</span></div>
+        <div class="cell cell-label"><span class="label">02 / Network</span></div>
         <div class="cell cell-content">
-            <div style="margin-bottom: 80px;">
-                <h2>STK 118</h2>
-                <p>Visual Design Lead. 2021 — PRESENT.</p>
-            </div>
-            <div>
-                <h2>MANDARIN</h2>
-                <p>Concept Developer. 2021 — 2025.</p>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <a href="https://natia-k.github.io/my-portfolio/" class="network-link">Portfolio ↗</a>
+                <a href="https://www.linkedin.com/" class="network-link">LinkedIn ↗</a>
+                <a href="mailto:natia.kurtanidze55@gmail.com" class="network-link">Email ↗</a>
             </div>
         </div>
     </section>
@@ -179,13 +184,49 @@
     <div class="scroll-line"></div>
 
     <section class="section">
-        <div class="cell cell-label"><span class="label">03 / Tech</span></div>
+        <div class="cell cell-label"><span class="label">03 / Experience</span></div>
         <div class="cell cell-content">
-            <p>PS / AI / ID / AE / PY / JS / HTML / CSS</p>
+            <div style="margin-bottom: 60px;">
+                <span class="name-label">2021 — Present</span>
+                <h2>STK 118</h2>
+                <p>Visual Design Lead. Systems & Digital Architecture.</p>
+            </div>
+            <div>
+                <span class="name-label">2021 — 2025</span>
+                <h2>MANDARIN</h2>
+                <p>Concept Developer. Editorial Logic & Layout.</p>
+            </div>
         </div>
     </section>
 
     <div class="scroll-line"></div>
+
+    <section class="section">
+        <div class="cell cell-label"><span class="label">04 / Education</span></div>
+        <div class="cell cell-content">
+            <span class="name-label">Harvard University</span>
+            <h2>CS50x</h2>
+            <p>Foundation in Computer Science. Algorithms, logic, and architecture.</p>
+        </div>
+    </section>
+
+    <div class="scroll-line"></div>
+
+    <section class="section">
+        <div class="cell cell-label"><span class="label">05 / Toolkit</span></div>
+        <div class="cell cell-content">
+            <div class="tools-text">
+                PS / AI / ID / AE<br>
+                PY / JS / HTML / CSS
+            </div>
+        </div>
+    </section>
+
+    <div class="scroll-line"></div>
+
+    <footer>
+        <a href="mailto:natia.kurtanidze55@gmail.com" class="footer-link">SAY_HELLO</a>
+    </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
@@ -193,22 +234,19 @@
         // Kinetic Line Movement (Stretches on scroll)
         gsap.utils.toArray('.scroll-line').forEach(line => {
             gsap.fromTo(line, 
-                { scaleX: 0.1 }, 
+                { scaleX: 0 }, 
                 { 
                     scaleX: 1, 
                     duration: 1, 
-                    ease: "power2.out",
+                    ease: "none",
                     scrollTrigger: {
                         trigger: line,
                         start: "top 95%",
-                        scrub: 1
+                        scrub: true
                     }
                 }
             );
         });
-
-        // Hover Sound Effect (Optional addition for "Wow")
-        // Just visual "Cloudy Mode" implemented via CSS filter/shadow
     </script>
 </body>
 </html>
