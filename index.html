@@ -3,213 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATIA KURTANIDZE | VISUAL SYSTEM</title>
+    <title>NATIA KURTANIDZE | VISUAL DESIGNER</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            --bg: #e5e5e5; /* Industrial Grey */
-            --ink: #000000;
-            --mucho-red: #ff3300;
+            --bg: #fdfbf7; 
+            --text: #1a1a1a; 
+            --accent: #ff0000; 
+            --dim: #888888;
+            --main-font: "Inter", "Helvetica Neue", Arial, sans-serif;
+            --mono: "SFMono-Regular", Consolas, monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             background: var(--bg); 
-            color: var(--ink); 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            color: var(--text); 
+            font-family: var(--main-font); 
             overflow-x: hidden;
-            line-height: 0.8;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
         }
 
-        /* THE SYSTEM GRID */
-        .line {
-            width: 100%;
-            height: 2px;
-            background: var(--ink);
-            position: relative;
+        /* LAYOUT */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+        
+        .section-wrap { 
+            margin-bottom: 20vh; 
+            opacity: 0; 
+            transform: translateY(30px); 
         }
 
-        .section-header {
-            padding: 2vw;
-            display: flex;
-            justify-content: space-between;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 12px;
-            border-bottom: 2px solid var(--ink);
-        }
-
-        /* KINETIC TYPE */
-        h1 {
-            font-size: 25vw;
-            font-weight: 900;
-            letter-spacing: -0.09em;
-            text-transform: uppercase;
-            padding: 20px;
-            white-space: nowrap;
-        }
-
-        .scroll-text {
-            display: flex;
-            border-bottom: 2px solid var(--ink);
-            background: var(--bg);
-        }
-
-        /* CONTENT BLOCKS */
-        .content-block {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            border-bottom: 2px solid var(--ink);
-        }
-
-        .cell {
-            grid-column: span 12;
-            padding: 60px 20px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        @media (min-width: 900px) {
-            .cell.left { grid-column: span 8; border-right: 2px solid var(--ink); border-bottom: none; }
-            .cell.right { grid-column: span 4; border-bottom: none; }
-        }
-
-        .label {
-            color: var(--mucho-red);
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 11px;
-            margin-bottom: 40px;
+        /* TYPOGRAPHY */
+        .section-label { 
+            font-family: var(--mono); 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            color: var(--accent); 
+            letter-spacing: 0.2em; 
             display: block;
+            margin-bottom: 40px;
         }
 
-        h2 { font-size: clamp(40px, 8vw, 150px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.06em; margin-bottom: 20px; }
-        p { font-size: 24px; font-weight: 600; text-transform: uppercase; line-height: 1.1; max-width: 600px; }
-
-        /* THE SOUL: RED ACCENT BLOCKS */
-        .red-block {
-            background: var(--mucho-red);
-            color: var(--ink);
-            padding: 100px 20px;
-            grid-column: span 12;
-            border-bottom: 2px solid var(--ink);
-        }
-
-        .red-block h2 { color: var(--ink); font-size: 12vw; }
-
-        /* TOOLKIT MARQUEE */
-        .marquee {
-            overflow: hidden;
-            background: var(--ink);
-            color: var(--bg);
-            padding: 20px 0;
-            white-space: nowrap;
-            font-size: 4vw;
-            font-weight: 900;
+        h1 { 
+            font-size: clamp(60px, 10vw, 120px); 
+            font-weight: 900; 
+            line-height: 0.85; 
+            letter-spacing: -0.05em; 
             text-transform: uppercase;
+            margin-bottom: 20px;
         }
+
+        h2 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; text-transform: uppercase; }
+        
+        h3 { font-family: var(--mono); font-size: 13px; color: var(--dim); margin-bottom: 15px; text-transform: uppercase; }
+
+        p { font-size: 18px; font-weight: 400; color: var(--text); max-width: 600px; line-height: 1.6; }
+
+        /* HERO */
+        header { height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero-sub { font-size: 24px; font-weight: 500; max-width: 500px; line-height: 1.2; margin-top: 20px; }
+
+        /* SKILLS GRID */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .skill-cat b { display: block; font-family: var(--mono); font-size: 11px; margin-bottom: 15px; text-transform: uppercase; color: var(--text); }
+        .skill-cat span { display: block; font-size: 15px; margin-bottom: 8px; color: var(--dim); }
 
         /* LINKS */
-        a { color: inherit; text-decoration: none; border-bottom: 3px solid transparent; transition: 0.2s; }
-        a:hover { border-bottom: 3px solid var(--mucho-red); }
+        a { 
+            color: var(--text); 
+            text-decoration: none; 
+            position: relative; 
+            font-weight: 600; 
+            transition: opacity 0.3s ease;
+        }
+        
+        a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
 
+        a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+        a:hover { opacity: 0.7; }
+
+        /* SELECTED WORK LIST */
+        .work-item { border-bottom: 1px solid #eee; padding: 20px 0; display: flex; justify-content: space-between; align-items: baseline; }
+        .work-item:last-child { border-bottom: none; }
+        .work-desc { font-size: 14px; color: var(--dim); }
+
+        /* FOOTER */
+        footer { padding-bottom: 10vh; border-top: 1px solid #eee; padding-top: 60px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 60px; }
+            .section-wrap { margin-bottom: 12vh; }
+            .work-item { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="section-header">
-        <span>Natia Kurtanidze // System 2.0</span>
-        <span>Berlin // 2026</span>
-    </nav>
+    <div class="container">
+        <header class="section-wrap" style="opacity:1; transform:none;">
+            <span class="section-label">Visual Designer</span>
+            <h1>Natia<br>Kurtanidze</h1>
+            <p class="hero-sub">Visual Designer working between graphic systems, typography and web. Based in Berlin.</p>
+        </header>
 
-    <div class="scroll-text kinetic-1">
-        <h1>NATIA KURTANIDZE</h1>
-    </div>
-
-    <section class="content-block">
-        <div class="cell left">
-            <span class="label">01 / Manifesto</span>
-            <p>Visual Designer specializing in high-impact brand identities and digital architecture. I build systems that move.</p>
+        <div class="section-wrap reveal">
+            <span class="section-label">01 // Profile</span>
+            <p>Specialized in brand identity, packaging, and digital interfaces. Currently shaping visual languages at STK 118 GmbH, bridging the gap between high-end aesthetics and technical functionality.</p>
         </div>
-        <div class="cell right">
-            <span class="label">02 / Network</span>
-            <p><a href="https://natia-k.github.io/my-portfolio/">PORTFOLIO</a></p>
-            <p><a href="mailto:natia.kurtanidze55@gmail.com">EMAIL</a></p>
-        </div>
-    </section>
 
-    <div class="scroll-text kinetic-2" style="background: var(--ink); color: var(--mucho-red);">
-        <h1>EXPERIENCE_EXPERIENCE</h1>
-    </div>
-
-    <section class="content-block">
-        <div class="cell left">
-            <span class="label">03 / History</span>
-            <div style="margin-bottom: 80px;">
-                <span class="label" style="color:var(--ink)">2021 — PRESENT</span>
+        <div class="section-wrap reveal">
+            <span class="section-label">02 // Experience</span>
+            
+            <div style="margin-bottom: 60px;">
+                <h3>2021 — Present</h3>
                 <h2>STK 118 GMBH</h2>
-                <p>Lead Visual Identity & Interface Architecture.</p>
+                <p>Lead Visual Designer. Engineering brand identities and UI/UX systems for digital products. Managing visual consistency across all marketing assets.</p>
             </div>
-            <div style="margin-bottom: 80px;">
-                <span class="label" style="color:var(--ink)">2021 — 2025</span>
-                <h2>MANDARIN FACILITY</h2>
-                <p>Concept development and structural visual design.</p>
+
+            <div style="margin-bottom: 60px;">
+                <h3>2021 — 2025</h3>
+                <h2>Mandarin Facility</h2>
+                <p>Concept Developer. Orchestrating complex editorial layouts and structured visual concepts for large-scale facilities.</p>
             </div>
+
             <div>
-                <span class="label" style="color:var(--ink)">2017 — 2020</span>
-                <h2>FREELANCE</h2>
-                <p>Logo design, digital illustration, and visual strategy.</p>
+                <h3>2017 — 2020</h3>
+                <h2>Freelance</h2>
+                <p>Visual Designer. Developing bespoke logos, digital illustrations, and experimental social content for a global client base.</p>
             </div>
         </div>
-        <div class="cell right" style="background: #ddd;">
-            <span class="label">04 / Education</span>
-            <h2>CS50x</h2>
-            <p>Harvard University Foundations of Computer Science.</p>
+
+        <div class="section-wrap reveal">
+            <span class="section-label">03 // Selected Work</span>
+            <div class="work-item">
+                <a href="#">Poster Series</a>
+                <span class="work-desc">Experimental typography and visual storytelling</span>
+            </div>
+            <div class="work-item">
+                <a href="#">CD Covers</a>
+                <span class="work-desc">Conceptual identity work inspired by music culture</span>
+            </div>
+            <div class="work-item">
+                <a href="https://natia-k.github.io/my-portfolio/">Portfolio Website</a>
+                <span class="work-desc">Self-built exploration of interaction design</span>
+            </div>
         </div>
-    </section>
 
-    <div class="red-block">
-        <span class="label" style="color: black;">05 / Toolkit</span>
-        <h2>ADOBE CC. PYTHON. JS. HTML. CSS. BRANDING. PACKAGING.</h2>
-    </div>
-
-    <div class="marquee">
-        <div class="marquee-inner">
-            AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — 
+        <div class="section-wrap reveal">
+            <span class="section-label">04 // Toolkit</span>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <b>Design</b>
+                    <span>Figma, Illustrator</span>
+                    <span>Photoshop, InDesign</span>
+                    <span>After Effects</span>
+                </div>
+                <div class="skill-cat">
+                    <b>Web & Technical</b>
+                    <span>HTML5, CSS3, JS</span>
+                    <span>Python, C, Git</span>
+                    <span>GitHub Pages</span>
+                </div>
+                <div class="skill-cat">
+                    <b>Intelligence</b>
+                    <span>Midjourney</span>
+                    <span>GPT Image</span>
+                    <span>Runway</span>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <a href="mailto:natia.kurtanidze55@gmail.com" class="red-block" style="display: block; text-align: center; text-decoration: none;">
-        <h2>SAY HELLO →</h2>
-    </a>
+        <div class="section-wrap reveal">
+            <span class="section-label">05 // Education</span>
+            <h3>HarvardX CS50x Certificate</h3>
+            <h2>Computer Science</h2>
+            <p>Comprehensive study of software engineering foundations, data structures, and algorithmic thinking.</p>
+        </div>
+
+        <footer class="section-wrap reveal">
+            <span class="section-label">06 // Contact</span>
+            <h2>Get in touch</h2>
+            <p style="margin-bottom: 40px;">Currently based in Berlin. Open to collaborative projects and high-impact design roles.</p>
+            <p>
+                <a href="mailto:natia.kurtanidze55@gmail.com">Email</a> &nbsp;&nbsp; 
+                <a href="https://natia-k.github.io/my-portfolio/">Portfolio</a>
+            </p>
+        </footer>
+    </div>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Kinetic Scroll for Headers
-        gsap.to(".kinetic-1 h1", {
-            xPercent: -50,
-            scrollTrigger: {
-                trigger: ".kinetic-1",
-                scrub: 1
-            }
-        });
-
-        gsap.to(".kinetic-2 h1", {
-            xPercent: 20,
-            scrollTrigger: {
-                trigger: ".kinetic-2",
-                scrub: 1
-            }
-        });
-
-        // Marquee
-        gsap.to(".marquee-inner", {
-            xPercent: -30,
-            repeat: -1,
-            duration: 15,
-            ease: "linear"
+        // Subtle Scroll Reveal
+        gsap.utils.toArray(".reveal").forEach((section) => {
+            gsap.to(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power3.out"
+            });
         });
     </script>
 </body>
