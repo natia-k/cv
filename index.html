@@ -42,7 +42,7 @@
             letter-spacing: -0.06em;
             text-transform: uppercase;
             line-height: 0.8;
-            margin-left: -0.04em; /* Optical alignment for 'N' */
+            margin-left: -0.05em; /* Optical alignment */
         }
 
         .hero-sub {
@@ -52,8 +52,8 @@
             letter-spacing: 0.15em;
             margin-top: 25px;
             display: block;
-            /* Fixed alignment: no more sticking out */
-            padding-left: 2px; 
+            /* Precise alignment with the start of the H1 */
+            padding-left: 0; 
         }
 
         .section {
@@ -123,35 +123,35 @@
 
         nav a:hover { background: var(--ink); color: var(--warm-red); }
 
-        /* NEW FOOTER STYLE */
+        /* UPDATED FOOTER */
         footer {
             padding: 15vh 5vw;
             border-top: 2px solid var(--ink);
         }
 
         .footer-question {
-            font-size: clamp(30px, 6vw, 80px);
+            font-size: clamp(40px, 8vw, 120px);
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -0.03em;
-            margin-bottom: 40px;
-            max-width: 80%;
-            line-height: 0.9;
+            letter-spacing: -0.05em;
+            line-height: 0.85;
+            margin-bottom: 20px;
         }
 
-        .footer-link {
-            font-size: clamp(40px, 10vw, 120px);
+        .footer-sub-question {
+            font-size: clamp(20px, 3vw, 40px);
             font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
             color: var(--ink);
             text-decoration: none;
             transition: 0.4s;
-            display: inline-block;
+            display: block;
         }
 
-        .footer-link:hover {
+        .footer-sub-question:hover {
             color: var(--active);
-            text-shadow: 0 0 20px white;
-            transform: skewX(-5deg);
+            text-shadow: 0 0 15px white;
         }
     </style>
 </head>
@@ -185,19 +185,19 @@
         <div class="cell cell-label"><span class="label">02 / Education</span></div>
         <div class="cell cell-content">
             <div style="margin-bottom: 40px;">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">HarvardX </span>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">HarvardX</span>
                 <h2>CS50x</h2>
                 <p>C, Python, HTML, CSS, JavaScript, Algorithmen, Datenstrukturen.</p>
             </div>
             <div style="margin-bottom: 40px;">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ILIA STATE UNIVERSITY </span>
-                <h2>Grafikdesign und Bildende Kunst </h2>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ILIA STATE UNIVERSITY</span>
+                <h2>Grafikdesign und Bildende Kunst</h2>
             </div>
             <div>
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ACADEMY OF DIGITAL INDUSTRY </span>
-                <p>• Grafikdesign und 3D-Design <br>
-                   • UI/UX Design, Web- und Mobile Design <br>
-                   • Markenentwicklung (Brand Design) </p>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ACADEMY OF DIGITAL INDUSTRY</span>
+                <p>• Grafikdesign und 3D-Design<br>
+                   • UI/UX Design, Web- und Mobile Design<br>
+                   • Markenentwicklung (Brand Design)</p>
             </div>
         </div>
     </section>
@@ -208,23 +208,23 @@
         <div class="cell cell-label"><span class="label">03 / Experience</span></div>
         <div class="cell cell-content">
             <div style="margin-bottom: 50px;">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 2025 </span>
-                <h2>STK 118 GmbH </h2>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 2025</span>
+                <h2>STK 118 GmbH</h2>
                 <p>Gestaltung von Print- und Digitalmedien, Webseiten-Design.</p>
             </div>
             <div style="margin-bottom: 50px;">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 03/2025 </span>
-                <h2>MANDARIN FACILITY </h2>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 03/2025</span>
+                <h2>MANDARIN FACILITY</h2>
                 <p>Visuelle Konzepte, Layouts und Unterstützung im Designprozess.</p>
             </div>
             <div style="margin-bottom: 50px;">
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2017 — 2020 </span>
-                <h2>Freelance </h2>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2017 — 2020</span>
+                <h2>Freelance</h2>
                 <p>Markenentwicklung, Logodesign, Social Media, digitale Porträts.</p>
             </div>
             <div>
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/2015 — 10/2017 </span>
-                <h2>Marketingagentur „Fortis" </h2>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/2015 — 10/2017</span>
+                <h2>Marketingagentur „Fortis"</h2>
                 <p>Branding, digitale Werbung und Kampagnengestaltung.</p>
             </div>
         </div>
@@ -236,9 +236,9 @@
         <div class="cell cell-label"><span class="label">04 / Toolkit</span></div>
         <div class="cell cell-content">
             <div class="tools-text">
-                Adobe PS, AI, ID, AE, CorelDRAW  / 
-                Python, C, HTML, CSS, JS  / 
-                Git & GitHub, VS Code 
+                Adobe PS, AI, ID, AE, CorelDRAW / 
+                Python, C, HTML, CSS, JS / 
+                Git & GitHub, VS Code
             </div>
         </div>
     </section>
@@ -246,8 +246,8 @@
     <div class="scroll-line"></div>
 
     <footer>
-        <div class="footer-question">So what exactly are we doing?</div>
-        <a href="mailto:natia.kurtanidze55@gmail.com" class="footer-link">SAY_HELLO</a>
+        <div class="footer-question">So, what are we building next?</div>
+        <a href="mailto:natia.kurtanidze55@gmail.com" class="footer-sub-question">Tell me more ↗</a>
     </footer>
 
     <script>
