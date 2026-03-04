@@ -8,266 +8,221 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            /* Warmer, more sophisticated grey */
-            --bg: #dbdbdb; 
+            --bg: #dbdbdb; /* Warm editorial grey */
             --ink: #0a0a0a;
             --mucho-red: #ff3300;
+            --transition: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             background: var(--bg); 
             color: var(--ink); 
             font-family: 'Inter', 'Helvetica Neue', sans-serif; 
             overflow-x: hidden;
-            line-height: 1.1;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* PREMIUM NOISE OVERLAY */
+        /* 1. NOISE OVERLAY */
         body::before {
             content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.06;
+            opacity: 0.06; pointer-events: none; z-index: 9999;
+        }
+
+        /* 2. CUSTOM CURSOR & PREVIEW */
+        #cursor-follower {
+            position: fixed;
+            width: 12px; height: 12px;
+            background: var(--mucho-red);
+            border-radius: 50%;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 10000;
+            mix-blend-mode: difference;
         }
 
-        /* NAV */
-        nav {
-            padding: 30px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            border-bottom: 2px solid var(--ink);
+        #project-preview {
+            position: fixed;
+            width: 300px; height: 200px;
+            background: var(--ink);
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            overflow: hidden;
+            transition: transform 0.5s var(--transition), opacity 0.3s ease;
         }
 
-        /* HERO - KINETIC INTERACTION */
-        header {
-            padding: 5vw;
-            border-bottom: 2px solid var(--ink);
-            perspective: 1000px;
-        }
+        #project-preview img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
 
-        h1 {
-            font-size: clamp(60px, 20vw, 240px);
-            font-weight: 900;
-            line-height: 0.75;
-            letter-spacing: -0.07em;
-            text-transform: uppercase;
-            transition: letter-spacing 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        h1:hover {
-            letter-spacing: -0.02em; /* Subtle expansion trick */
-            color: var(--mucho-red);
-        }
-
-        /* GRID SYSTEM */
-        .section-row {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            border-bottom: 2px solid var(--ink);
-        }
-
-        .cell { padding: 8vw 5vw; grid-column: span 12; }
+        /* 3. TYPOGRAPHY & GRID */
+        .grid-row { display: grid; grid-template-columns: repeat(12, 1fr); border-bottom: 2px solid var(--ink); }
+        .cell { padding: 8vw 5vw; grid-column: span 12; position: relative; }
+        
         @media (min-width: 900px) {
             .cell-8 { grid-column: span 8; border-right: 2px solid var(--ink); }
             .cell-4 { grid-column: span 4; }
         }
 
-        /* TYPOGRAPHY */
-        .label {
-            font-size: 11px;
+        /* 4. HERO KINETIC */
+        header { padding: 5vw; border-bottom: 2px solid var(--ink); }
+        .hero-title {
+            font-size: clamp(60px, 18vw, 240px);
             font-weight: 900;
+            line-height: 0.75;
+            letter-spacing: -0.07em;
             text-transform: uppercase;
-            color: var(--mucho-red);
-            letter-spacing: 0.3em;
-            margin-bottom: 40px;
-            display: block;
+            display: inline-block;
         }
 
-        h2 { 
-            font-size: clamp(32px, 6vw, 100px); 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            letter-spacing: -0.05em; 
-            margin-bottom: 20px;
+        .char { display: inline-block; transition: transform 0.3s var(--transition); }
+        .hero-title:hover .char { color: var(--mucho-red); }
+
+        /* 5. HOVER UNDERLINES */
+        a { color: var(--ink); text-decoration: none; position: relative; font-weight: 700; }
+        a::after {
+            content: ""; position: absolute; bottom: -2px; left: 0;
+            width: 100%; height: 2px; background: var(--mucho-red);
+            transform: scaleX(0); transform-origin: right;
+            transition: transform 0.4s var(--transition);
         }
+        a:hover::after { transform: scaleX(1); transform-origin: left; }
 
-        p { font-size: clamp(18px, 2vw, 26px); font-weight: 500; max-width: 750px; }
+        /* 6. MARQUEE */
+        .marquee { background: var(--ink); color: var(--bg); padding: 30px 0; overflow: hidden; white-space: nowrap; }
+        .marquee-inner { display: inline-block; font-weight: 900; font-size: 5vw; text-transform: uppercase; }
 
-        /* DESIGNER PERSONALITY */
-        .personality-text {
-            font-size: clamp(24px, 4vw, 50px);
-            font-weight: 800;
-            text-transform: uppercase;
-            line-height: 1;
-            letter-spacing: -0.03em;
-        }
+        /* 7. REVEAL MASK */
+        .reveal-mask { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
 
-        /* SHARP EXPERIENCE ENTRIES */
-        .exp-item { margin-bottom: 60px; }
-        .exp-meta { font-family: monospace; font-size: 12px; opacity: 0.6; margin-bottom: 10px; display: block; }
-
-        /* THE MARQUEE - SPEED INTERACTION */
-        .marquee {
-            background: var(--ink);
-            color: var(--bg);
-            padding: 30px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            font-weight: 900;
-            font-size: 4vw;
-            text-transform: uppercase;
-        }
-
-        .marquee-inner { display: inline-block; }
-
-        /* POSTER MOMENT (TOOLKIT) */
-        .toolkit-poster {
-            background: var(--mucho-red);
-            color: var(--ink);
-            padding: 10vw 5vw;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .toolkit-poster h2 { font-size: 15vw; margin: 0; line-height: 0.8; }
-
-        /* FOOTER */
-        .contact-trigger {
-            display: block;
-            padding: 10vw 5vw;
-            text-align: center;
-            font-size: 10vw;
-            font-weight: 900;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: var(--ink);
-            transition: 0.4s;
-        }
-        .contact-trigger:hover { background: var(--mucho-red); color: var(--bg); }
-
+        .label { font-size: 11px; font-weight: 900; color: var(--mucho-red); letter-spacing: 0.3em; margin-bottom: 40px; display: block; }
+        h2 { font-size: clamp(32px, 6vw, 100px); font-weight: 900; letter-spacing: -0.05em; margin-bottom: 20px; }
+        p { font-size: 22px; font-weight: 500; max-width: 700px; line-height: 1.2; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <span>Natia Kurtanidze // System 2026</span>
-        <span>Berlin // Worldwide</span>
-    </nav>
+    <div id="cursor-follower"></div>
+    <div id="project-preview"><img src="" alt="preview"></div>
 
     <header>
-        <h1 id="hero-title">NATIA<br>KURTA<br>NIDZE</h1>
+        <h1 class="hero-title" id="kinetic-name">NATIA<br>KURTA<br>NIDZE</h1>
     </header>
 
-    <section class="section-row">
-        <div class="cell">
-            <span class="label">01 // DNA</span>
-            <p class="personality-text">
-                Visual Designer focused on brand systems, editorial layouts and digital surfaces. 
-                I code my own structures because I like controlling how design lives on the screen.
-            </p>
+    <section class="grid-row reveal-mask">
+        <div class="cell cell-8">
+            <span class="label">01 // PROFILE</span>
+            <p>Visual Designer focused on brand systems, editorial layouts, and digital surfaces. Currently building visual logic at STK 118 GmbH in Berlin.</p>
+        </div>
+        <div class="cell cell-4">
+            <span class="label">02 // NETWORK</span>
+            <p><a href="https://natia-k.github.io/my-portfolio/">PORTFOLIO</a></p>
+            <p><a href="mailto:natia.kurtanidze55@gmail.com">EMAIL</a></p>
         </div>
     </section>
 
-    <section class="section-row">
+    <section class="grid-row reveal-mask">
         <div class="cell cell-8">
-            <span class="label">02 // Systems & History</span>
-            <div class="exp-item">
-                <span class="exp-meta">2021 — PRESENT</span>
+            <span class="label">03 // EXPERIENCE</span>
+            <div class="exp-item" data-img="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=600&q=80">
                 <h2>STK 118 GMBH</h2>
-                <p>Brand systems / UI structures / Digital product identities.</p>
+                <p>Lead Visual Designer. 2021 — Present.</p>
             </div>
-            <div class="exp-item">
-                <span class="exp-meta">2021 — 2025</span>
+            <br><br>
+            <div class="exp-item" data-img="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=600&q=80">
                 <h2>MANDARIN FACILITY</h2>
-                <p>Editorial architecture / Visual logic / Layout orchestration.</p>
-            </div>
-            <div class="exp-item">
-                <span class="exp-meta">2017 — 2020</span>
-                <h2>FREELANCE</h2>
-                <p>Bespoke identity / Kinetic graphics / Digital illustration.</p>
+                <p>Concept Developer. 2021 — 2025.</p>
             </div>
         </div>
         <div class="cell cell-4">
-            <span class="label">03 // Foundation</span>
-            <span class="exp-meta">HARVARD UNIVERSITY</span>
+            <span class="label">04 // EDUCATION</span>
             <h2>CS50x</h2>
-            <p>Computer Science foundation. Algorithms, logic, and software architecture.</p>
+            <p>Harvard Computer Science Foundation.</p>
         </div>
     </section>
 
-    <section class="toolkit-poster">
-        <span class="label" style="color:var(--ink)">04 // Tools</span>
-        <h2 class="kinetic-tools">PS.AI.ID.AE.PY.JS.</h2>
+    <section class="grid-row reveal-mask">
+        <div class="cell">
+            <span class="label">05 // TOOLKIT</span>
+            <h2 style="font-size: 10vw; line-height: 0.8;">PS.AI.ID.AE.PY.JS.</h2>
+        </div>
     </section>
 
-    <div class="marquee" id="marquee-container">
-        <div class="marquee-inner" id="marquee-text">
+    <div class="marquee" id="marquee">
+        <div class="marquee-inner">
             AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — DESIGN + CODE — AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — DESIGN + CODE — 
         </div>
     </div>
 
-    <a href="mailto:natia.kurtanidze55@gmail.com" class="contact-trigger">
-        HIRE_ME_NOW
-    </a>
+    <footer class="grid-row">
+        <a href="mailto:natia.kurtanidze55@gmail.com" class="cell" style="text-align: center; font-size: 10vw; padding: 10vh 0;">
+            CONTACT
+        </a>
+    </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // MARQUEE ANIMATION
-        let marqueeTween = gsap.to("#marquee-text", {
-            xPercent: -50,
-            repeat: -1,
-            duration: 20,
-            ease: "none"
-        });
-
-        // Speed change on hover trick
-        const marqueeContainer = document.getElementById('marquee-container');
-        marqueeContainer.addEventListener('mouseenter', () => marqueeTween.timeScale(5));
-        marqueeContainer.addEventListener('mouseleave', () => marqueeTween.timeScale(1));
-
-        // TOOLKIT SCROLL SCALE (POSTER MOMENT)
-        gsap.to(".kinetic-tools", {
-            scrollTrigger: {
-                trigger: ".toolkit-poster",
-                start: "top bottom",
-                scrub: 1
-            },
-            scale: 1.2,
-            letterSpacing: "0.05em"
-        });
-
-        // HERO REVEAL
-        gsap.from("#hero-title", {
-            y: 100,
-            opacity: 0,
-            duration: 1.5,
-            ease: "expo.out"
-        });
-
-        // SECTION REVEALS
-        gsap.utils.toArray('.section-row').forEach(row => {
-            gsap.from(row, {
-                scrollTrigger: {
-                    trigger: row,
-                    start: "top 90%",
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                ease: "power3.out"
+        // 1. Kinetic Hero Split
+        const heroTitle = document.getElementById('kinetic-name');
+        heroTitle.innerHTML = heroTitle.textContent.replace(/\S/g, "<span class='char'>$&</span>");
+        
+        document.addEventListener('mousemove', (e) => {
+            const chars = document.querySelectorAll('.char');
+            chars.forEach(char => {
+                const rect = char.getBoundingClientRect();
+                const dx = e.clientX - (rect.left + rect.width / 2);
+                const dy = e.clientY - (rect.top + rect.height / 2);
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                if(dist < 200) {
+                    gsap.to(char, { x: dx * 0.1, y: dy * 0.1, duration: 0.4 });
+                } else {
+                    gsap.to(char, { x: 0, y: 0, duration: 0.4 });
+                }
             });
         });
+
+        // 2. Project Preview Follower
+        const preview = document.getElementById('project-preview');
+        const previewImg = preview.querySelector('img');
+        
+        document.querySelectorAll('.exp-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                previewImg.src = item.dataset.img;
+                gsap.to(preview, { opacity: 1, scale: 1, duration: 0.3 });
+            });
+            item.addEventListener('mouseleave', () => {
+                gsap.to(preview, { opacity: 0, scale: 0.8, duration: 0.3 });
+            });
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            gsap.to('#cursor-follower', { x: e.clientX, y: e.clientY, duration: 0.1 });
+            gsap.to(preview, { x: e.clientX + 40, y: e.clientY + 40, duration: 0.6, ease: "power3.out" });
+        });
+
+        // 3. Clip-Path Scroll Reveal
+        gsap.utils.toArray('.reveal-mask').forEach(section => {
+            gsap.to(section, {
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                duration: 1.5,
+                ease: "power4.inOut",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 90%",
+                }
+            });
+        });
+
+        // 4. Marquee Acceleration
+        let marqueeTween = gsap.to(".marquee-inner", {
+            xPercent: -50, repeat: -1, duration: 20, ease: "none"
+        });
+        document.getElementById('marquee').addEventListener('mouseenter', () => marqueeTween.timeScale(4));
+        document.getElementById('marquee').addEventListener('mouseleave', () => marqueeTween.timeScale(1));
     </script>
 </body>
 </html>
