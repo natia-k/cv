@@ -8,158 +8,193 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            --bg: #0a0a0a; /* Darker, more "Mucho" vibe */
+            --bg: #000000;
             --text: #ffffff;
-            --accent: #ff0000;
-            --font-main: "Inter", sans-serif;
+            --mucho-red: #ff3300; /* The specific Mucho brand red */
+            --border: #222222;
+            --font: 'Inter', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body { 
             background: var(--bg); 
             color: var(--text); 
-            font-family: var(--font-main); 
-            overflow-x: hidden; 
-            line-height: 1.1;
+            font-family: var(--font); 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* DUMBAR STYLE KINETIC MASK */
-        .hero {
+        /* STRUCTURAL GRID */
+        .wrapper {
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            margin: 0 auto;
+            max-width: 1600px;
+        }
+
+        /* HEADER */
+        header {
             height: 100vh;
             display: flex;
-            align-items: center;
-            padding: 0 5%;
-            overflow: hidden;
-        }
-
-        .hero-name {
-            font-size: 18vw;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.05em;
-            display: flex;
             flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .hero-name span { display: block; height: auto; overflow: hidden; }
+        .hero-title {
+            font-size: clamp(60px, 18vw, 220px);
+            font-weight: 900;
+            line-height: 0.8;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+        }
 
-        /* MUCHO STYLE BRUTALIST GRID */
-        .grid-section {
-            border-top: 1px solid #333;
+        .red-text { color: var(--mucho-red); }
+
+        /* GRID CONTENT */
+        .grid-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: 50vh;
+            border-bottom: 1px solid var(--border);
         }
 
-        .grid-item {
-            padding: 60px 40px;
-            border-right: 1px solid #333;
-            border-bottom: 1px solid #333;
-            transition: background 0.4s ease;
+        .grid-cell {
+            padding: 80px 40px;
+            border-right: 1px solid var(--border);
         }
 
-        .grid-item:hover { background: #151515; }
+        .grid-cell:last-child { border-right: none; }
 
         .label {
-            font-size: 12px;
             font-family: monospace;
+            font-size: 11px;
             text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 40px;
+            color: var(--mucho-red);
             display: block;
+            margin-bottom: 40px;
+            letter-spacing: 0.2em;
         }
 
-        h2 { font-size: clamp(40px, 6vw, 80px); font-weight: 800; text-transform: uppercase; margin-bottom: 20px; }
-        p { font-size: 20px; color: #999; max-width: 400px; }
+        h2 {
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 20px;
+        }
 
-        /* SCROLL REVEAL ANIMATION CLASS */
-        .reveal { opacity: 0; transform: translateY(50px); }
+        p {
+            font-size: 20px;
+            line-height: 1.4;
+            color: #888;
+            max-width: 450px;
+        }
 
-        /* FOOTER KINETIC TEXT */
-        .marquee {
-            white-space: nowrap;
+        /* ANIMATION TARGETS */
+        .reveal { opacity: 0; transform: translateY(30px); }
+
+        /* MARQUEE FOOTER */
+        .footer-marquee {
+            padding: 60px 0;
             overflow: hidden;
-            border-top: 1px solid #333;
-            padding: 40px 0;
-            font-size: 8vw;
+            white-space: nowrap;
+            background: var(--mucho-red);
+            color: black;
             font-weight: 900;
             text-transform: uppercase;
+            font-size: 5vw;
         }
 
         @media (max-width: 768px) {
-            .grid-section { grid-template-columns: 1fr; }
-            .hero-name { font-size: 22vw; }
+            .grid-row { grid-template-columns: 1fr; }
+            .grid-cell { border-right: none; border-bottom: 1px solid var(--border); }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <h1 class="hero-name">
-            <span class="line">NATIA</span>
-            <span class="line" style="color: var(--accent);">KURTANIDZE</span>
-        </h1>
-    </section>
+    <div class="wrapper">
+        <header>
+            <h1 class="hero-title">
+                NATIA<br><span class="red-text">KURTANIDZE</span>
+            </h1>
+            <div style="margin-top: 40px; font-family: monospace; color: #444;">[ 2026 // VISUAL DESIGNER ]</div>
+        </header>
 
-    <section class="grid-section">
-        <div class="grid-item reveal">
-            <span class="label">01 / Statement</span>
-            <p>Visual Designer specializing in high-motion branding and identity for the next generation of digital culture.</p>
-        </div>
-        <div class="grid-item reveal">
-            <span class="label">02 / Contact</span>
-            <h2>BERLIN, DE</h2>
-            <p>natia.kurtanidze55@gmail.com</p>
-        </div>
-    </section>
+        <section class="grid-row">
+            <div class="grid-cell reveal">
+                <span class="label">01 // DNA</span>
+                <p>A visual designer focused on high-impact brand identities and kinetic digital experiences. Based in Berlin.</p>
+            </div>
+            <div class="grid-cell reveal">
+                <span class="label">02 // CONTACT</span>
+                <h2>NATIA.K@STUDIO</h2>
+                <p>Berlin, Germany<br>natia.kurtanidze55@gmail.com</p>
+            </div>
+        </section>
 
-    <section class="grid-section">
-        <div class="grid-item reveal">
-            <span class="label">03 / Experience</span>
-            <h2>STK 118</h2>
-            <p>Lead Visual Designer. Creating digital identities that move.</p>
-        </div>
-        <div class="grid-item reveal">
-            <span class="label">04 / Toolkit</span>
-            <h2>ADOBE CC</h2>
-            <h2>UI/UX</h2>
-            <h2>PYTHON</h2>
-        </div>
-    </section>
+        <section class="grid-row">
+            <div class="grid-cell reveal">
+                <span class="label">03 // EXPERIENCE</span>
+                <h2>STK 118 GMBH</h2>
+                <p>Developing visual brand identities and digital marketing assets that redefine the market.</p>
+            </div>
+            <div class="grid-cell reveal">
+                <span class="label">04 // EDUCATION</span>
+                <h2>HARVARD CS50x</h2>
+                <p>Bridging the gap between brutalist design and software engineering.</p>
+            </div>
+        </section>
 
-    <div class="marquee">
-        <span>WORK WITH ME • WORK WITH ME • WORK WITH ME • </span>
+        <section class="grid-row">
+            <div class="grid-cell reveal" style="grid-column: span 2;">
+                <span class="label">05 // TOOLKIT</span>
+                <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                    <h2>ADOBE CC</h2>
+                    <h2>UI/UX</h2>
+                    <h2>PYTHON</h2>
+                    <h2>JAVASCRIPT</h2>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer-marquee">
+            <div class="marquee-inner">
+                AVAILABLE FOR HIRE • AVAILABLE FOR HIRE • AVAILABLE FOR HIRE • AVAILABLE FOR HIRE • 
+            </div>
+        </div>
     </div>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Text Entrance (Studio Dumbar Style)
-        gsap.from(".line", {
-            y: 200,
+        // Entrance animation
+        gsap.from(".hero-title", {
             duration: 1.5,
-            stagger: 0.2,
+            y: 100,
+            opacity: 0,
             ease: "expo.out"
         });
 
-        // Scroll Reveals (Mucho Style)
-        gsap.utils.toArray(".reveal").forEach(item => {
-            gsap.to(item, {
+        // Scroll reveal logic
+        gsap.utils.toArray(".reveal").forEach(el => {
+            gsap.to(el, {
                 scrollTrigger: {
-                    trigger: item,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
+                    trigger: el,
+                    start: "top 90%",
                 },
                 opacity: 1,
                 y: 0,
                 duration: 1,
-                ease: "power4.out"
+                ease: "power3.out"
             });
         });
 
-        // Marquee Animation
-        gsap.to(".marquee span", {
-            xPercent: -50,
+        // Marquee
+        gsap.to(".marquee-inner", {
+            xPercent: -20,
             repeat: -1,
             duration: 10,
             ease: "linear"
