@@ -30,6 +30,7 @@
             height: 2px;
             background: var(--ink);
             transform-origin: left;
+            z-index: 5;
         }
 
         /* HEADER */
@@ -37,8 +38,6 @@
             padding: 12vh 5vw 8vh 5vw;
         }
 
-        .name-block { margin-bottom: 5px; }
-        
         h1 {
             font-size: clamp(50px, 12vw, 160px);
             font-weight: 900;
@@ -56,17 +55,16 @@
             display: block;
         }
 
-        /* CLEAN CLOUDY MODE */
+        /* FIXED CLOUDY MODE */
         .section {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            transition: color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: crosshair;
         }
 
         .section:hover {
             color: var(--active);
-            /* Refined glow: sharp and clear white */
             text-shadow: 0 0 12px rgba(255,255,255,0.7);
         }
 
@@ -102,7 +100,7 @@
 
         .edu-item { margin-bottom: 40px; }
 
-        /* REFINED TOOLKIT - Smaller technical font */
+        /* REFINED TOOLKIT SCALE */
         .tools-text {
             font-size: clamp(24px, 4vw, 45px);
             font-weight: 900;
@@ -137,7 +135,6 @@
             font-weight: 900;
             color: var(--ink);
             text-decoration: none;
-            transition: 0.4s;
         }
     </style>
 </head>
@@ -173,17 +170,17 @@
             <div class="edu-item">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">HarvardX</span>
                 <h2>CS50x</h2>
-                [cite_start]<p>C, Python, HTML, CSS, JavaScript, Algorithmen, Datenstrukturen[cite: 13].</p>
+                <p>C, Python, HTML, CSS, JavaScript, Algorithmen, Datenstrukturen.</p>
             </div>
             <div class="edu-item">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ILIA STATE UNIVERSITY</span>
-                [cite_start]<h2>Grafikdesign und Bildende Kunst [cite: 12]</h2>
+                <h2>Grafikdesign und Bildende Kunst</h2>
             </div>
             <div class="edu-item">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">ACADEMY OF DIGITAL INDUSTRY</span>
-                [cite_start]<p>• Grafikdesign und 3D-Design [cite: 12]<br>
-                   [cite_start]• UI/UX Design, Web- und Mobile Design [cite: 12]<br>
-                   [cite_start]• Markenentwicklung (Brand Design) [cite: 12]</p>
+                <p>• Grafikdesign und 3D-Design<br>
+                   • UI/UX Design, Web- und Mobile Design<br>
+                   • Markenentwicklung (Brand Design)</p>
             </div>
         </div>
     </section>
@@ -196,58 +193,22 @@
             <div style="margin-bottom: 50px;">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 2025</span>
                 <h2>STK 118 GmbH</h2>
-                <p>Visual Design Lead. [cite_start]Systems & Digital Architecture[cite: 22].</p>
+                <p>Visual Design Lead. Systems & Digital Architecture.</p>
             </div>
             <div style="margin-bottom: 50px;">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2021 — 03/2025</span>
                 <h2>MANDARIN FACILITY</h2>
-                <p>Concept Developer. [cite_start]Editorial Logic & Layout[cite: 23].</p>
+                <p>Concept Developer. Editorial Logic & Layout.</p>
             </div>
             <div style="margin-bottom: 50px;">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">2017 — 2020</span>
                 <h2>Freelance</h2>
-                [cite_start]<p>Brand development, Logodesign, and digital portraits[cite: 24].</p>
+                <p>Brand development, Logodesign, and digital portraits.</p>
             </div>
             <div style="margin-bottom: 50px;">
                 <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/2015 — 10/2017</span>
                 <h2>Marketingagentur „Fortis"</h2>
-                [cite_start]<p>Branding, digitale Werbung und Kampagnengestaltung[cite: 25].</p>
+                <p>Branding, digitale Werbung und Kampagnengestaltung.</p>
             </div>
             <div>
-                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/2013 — 09/2015</span>
-                <h2>Gesundheitsklinik „ZD"</h2>
-                [cite_start]<p>Büroleiterin & Versicherungsagentin[cite: 26].</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="scroll-line"></div>
-
-    <section class="section">
-        <div class="cell cell-label"><span class="label">04 / Toolkit</span></div>
-        <div class="cell cell-content">
-            <div class="tools-text">
-                [cite_start]Adobe PS, AI, ID, AE, CorelDRAW [cite: 19, 20] / 
-                [cite_start]Python, C, HTML, CSS, JS [cite: 15] / 
-                [cite_start]Git & GitHub, VS Code [cite: 16, 17]
-            </div>
-        </div>
-    </section>
-
-    <div class="scroll-line"></div>
-
-    <footer>
-        <a href="mailto:natia.kurtanidze55@gmail.com" class="footer-link">SAY_HELLO</a>
-    </footer>
-
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.scroll-line').forEach(line => {
-            gsap.fromTo(line, { scaleX: 0 }, { 
-                scaleX: 1, duration: 1, ease: "none",
-                scrollTrigger: { trigger: line, start: "top 95%", scrub: true }
-            });
-        });
-    </script>
-</body>
-</html>
+                <span class="label" style="opacity: 0.6; margin-bottom: 5px;">09/
