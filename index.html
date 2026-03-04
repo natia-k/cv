@@ -1,451 +1,216 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Natia Kurtanidze — CV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATIA KURTANIDZE | VISUAL SYSTEM</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --bg: #e5e5e5; /* Industrial Grey */
+            --ink: #000000;
+            --mucho-red: #ff3300;
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;650;800;900&display=swap" rel="stylesheet">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--ink); 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            overflow-x: hidden;
+            line-height: 0.8;
+        }
 
-  <style>
-    :root{
-      --bg:#070707;
-      --bg2:#0b0b0b;
-      --ink:#f2f0ea;
-      --ink2:rgba(242,240,234,.72);
-      --ink3:rgba(242,240,234,.45);
-      --line:rgba(242,240,234,.12);
-      --accent:#ff2a2a;
+        /* THE SYSTEM GRID */
+        .line {
+            width: 100%;
+            height: 2px;
+            background: var(--ink);
+            position: relative;
+        }
 
-      --pad:clamp(18px,4vw,56px);
-      --max:1180px;
-      --ease:cubic-bezier(.16,1,.3,1);
-      --font:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
+        .section-header {
+            padding: 2vw;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 12px;
+            border-bottom: 2px solid var(--ink);
+        }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--font);
-      background:
-        radial-gradient(900px 600px at 15% 0%, rgba(255,42,42,.14), transparent 60%),
-        radial-gradient(800px 500px at 90% 10%, rgba(255,255,255,.06), transparent 65%),
-        linear-gradient(180deg,var(--bg),var(--bg2));
-      color:var(--ink);
-      -webkit-font-smoothing:antialiased;
-      text-rendering:geometricPrecision;
-      overflow-x:hidden;
-    }
+        /* KINETIC TYPE */
+        h1 {
+            font-size: 25vw;
+            font-weight: 900;
+            letter-spacing: -0.09em;
+            text-transform: uppercase;
+            padding: 20px;
+            white-space: nowrap;
+        }
 
-    /* lightweight “film” texture (no external assets) */
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      opacity:.06;
-      mix-blend-mode:overlay;
-      background-image:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.03), rgba(255,255,255,.03) 1px, transparent 1px, transparent 2px);
-      z-index:9999;
-    }
+        .scroll-text {
+            display: flex;
+            border-bottom: 2px solid var(--ink);
+            background: var(--bg);
+        }
 
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:var(--pad)}
+        /* CONTENT BLOCKS */
+        .content-block {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            border-bottom: 2px solid var(--ink);
+        }
 
-    /* topbar */
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter:blur(10px);
-      background:linear-gradient(180deg, rgba(7,7,7,.82), rgba(7,7,7,.35));
-      border-bottom:1px solid var(--line);
-    }
-    .topbar .wrap{
-      display:flex; justify-content:space-between; align-items:center; gap:12px;
-      padding-top:calc(var(--pad)*.55);
-      padding-bottom:calc(var(--pad)*.55);
-    }
-    .mark{
-      font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink2);
-      display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;
-    }
-    .mark b{color:var(--ink); font-weight:800; letter-spacing:.10em}
-    .nav{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-      font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink2);
-    }
-    .nav a{
-      padding:10px 12px;
-      border:1px solid transparent;
-      border-radius:999px;
-      transition:transform .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease), color .35s var(--ease);
-    }
-    .nav a:hover{
-      transform:translateY(-1px);
-      border-color:var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--ink);
-    }
+        .cell {
+            grid-column: span 12;
+            padding: 60px 20px;
+            border-bottom: 1px solid #ccc;
+        }
 
-    /* hero */
-    .hero{
-      border-bottom:1px solid var(--line);
-      padding-top:clamp(24px,5vw,70px);
-      padding-bottom:clamp(34px,7vw,110px);
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:1.25fr .75fr;
-      gap:clamp(16px,3vw,42px);
-      align-items:start;
-    }
-    h1{
-      margin:0;
-      font-weight:900;
-      letter-spacing:-0.06em;
-      text-transform:uppercase;
-      line-height:.86;
-      font-size:clamp(56px,8.7vw,120px);
-    }
-    .stroke{
-      color:transparent;
-      -webkit-text-stroke:1px rgba(242,240,234,.45);
-    }
-    .micro{
-      margin-top:16px;
-      font-size:14px;
-      line-height:1.7;
-      color:var(--ink2);
-      max-width:62ch;
-    }
+        @media (min-width: 900px) {
+            .cell.left { grid-column: span 8; border-right: 2px solid var(--ink); border-bottom: none; }
+            .cell.right { grid-column: span 4; border-bottom: none; }
+        }
 
-    .card{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      background:rgba(255,255,255,.02);
-      box-shadow:0 30px 80px rgba(0,0,0,.35);
-      position:relative;
-      overflow:hidden;
-    }
-    .card::after{
-      content:"";
-      position:absolute; inset:-120px;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255,42,42,.20), transparent 55%),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,.10), transparent 55%);
-      filter:blur(18px);
-      opacity:.6;
-      pointer-events:none;
-    }
-    .card > *{position:relative; z-index:1}
+        .label {
+            color: var(--mucho-red);
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 11px;
+            margin-bottom: 40px;
+            display: block;
+        }
 
-    .row{
-      display:flex; justify-content:space-between; gap:12px;
-      padding:10px 0;
-      border-bottom:1px solid rgba(242,240,234,.10);
-      font-size:13px;
-      color:var(--ink2);
-    }
-    .row:last-child{border-bottom:none}
-    .row b{color:var(--ink); font-weight:650; overflow-wrap:anywhere}
+        h2 { font-size: clamp(40px, 8vw, 150px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.06em; margin-bottom: 20px; }
+        p { font-size: 24px; font-weight: 600; text-transform: uppercase; line-height: 1.1; max-width: 600px; }
 
-    .pills{margin-top:14px; display:flex; flex-wrap:wrap; gap:10px}
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(242,240,234,.14);
-      background:rgba(0,0,0,.18);
-      font-size:12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:var(--ink2);
-      transition:transform .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease);
-    }
-    .pill:hover{transform:translateY(-1px); border-color:rgba(255,42,42,.35); color:var(--ink)}
-    .dot{width:6px;height:6px;border-radius:50%;background:var(--accent); box-shadow:0 0 18px rgba(255,42,42,.55)}
+        /* THE SOUL: RED ACCENT BLOCKS */
+        .red-block {
+            background: var(--mucho-red);
+            color: var(--ink);
+            padding: 100px 20px;
+            grid-column: span 12;
+            border-bottom: 2px solid var(--ink);
+        }
 
-    /* sections */
-    .sections{padding:clamp(30px,6vw,85px) 0}
-    .section{
-      display:grid;
-      grid-template-columns:180px 1fr;
-      gap:clamp(16px,3vw,42px);
-      padding:clamp(18px,3.8vw,44px) 0;
-      border-bottom:1px solid var(--line);
+        .red-block h2 { color: var(--ink); font-size: 12vw; }
 
-      opacity:0;
-      transform:translateY(18px);
-      transition:opacity .8s var(--ease), transform .8s var(--ease);
-    }
-    .section.visible{opacity:1; transform:translateY(0)}
-    .section:last-child{border-bottom:none}
+        /* TOOLKIT MARQUEE */
+        .marquee {
+            overflow: hidden;
+            background: var(--ink);
+            color: var(--bg);
+            padding: 20px 0;
+            white-space: nowrap;
+            font-size: 4vw;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
 
-    .kicker{
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:var(--ink3);
-      line-height:1.6;
-    }
-    .kicker .num{color:var(--ink2); display:inline-block; margin-bottom:8px}
+        /* LINKS */
+        a { color: inherit; text-decoration: none; border-bottom: 3px solid transparent; transition: 0.2s; }
+        a:hover { border-bottom: 3px solid var(--mucho-red); }
 
-    .content h2{
-      margin:0 0 12px 0;
-      font-size:22px;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      text-transform:uppercase;
-    }
-    .lead{
-      margin:0 0 14px 0;
-      font-size:16px;
-      line-height:1.7;
-      color:var(--ink2);
-      max-width:78ch;
-    }
-
-    .cards{display:grid; gap:12px}
-    .job{
-      border:1px solid rgba(242,240,234,.12);
-      border-radius:18px;
-      padding:16px;
-      background:rgba(255,255,255,.02);
-      transition:transform .45s var(--ease), border-color .45s var(--ease), background .45s var(--ease);
-      position:relative;
-      overflow:hidden;
-    }
-    .job::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background:radial-gradient(500px 220px at 10% 10%, rgba(255,42,42,.14), transparent 60%);
-      opacity:0;
-      transition:opacity .45s var(--ease);
-      pointer-events:none;
-    }
-    .job:hover{transform:translateY(-3px); border-color:rgba(255,42,42,.30); background:rgba(255,255,255,.03)}
-    .job:hover::before{opacity:1}
-    .job > *{position:relative; z-index:1}
-
-    .jobTop{
-      display:flex;
-      justify-content:space-between;
-      gap:14px;
-      align-items:baseline;
-      flex-wrap:wrap;
-    }
-    .role{font-weight:800; text-transform:uppercase; font-size:16px}
-    .where{color:var(--ink2); font-size:14px}
-    .when{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace; font-size:12px; color:var(--ink3); letter-spacing:.14em; text-transform:uppercase}
-
-    .bullets{margin:10px 0 0 0; padding:0; list-style:none}
-    .bullets li{
-      padding-left:18px;
-      margin:10px 0;
-      color:var(--ink2);
-      line-height:1.6;
-      font-size:15px;
-      position:relative;
-    }
-    .bullets li::before{
-      content:"";
-      width:6px;height:6px;border-radius:50%;
-      background:rgba(242,240,234,.65);
-      position:absolute;
-      left:0; top:10px;
-    }
-
-    .toolkit{display:grid; grid-template-columns:1fr 1fr; gap:16px}
-    .tool{
-      border:1px solid rgba(242,240,234,.10);
-      border-radius:18px;
-      padding:14px;
-      background:rgba(255,255,255,.02);
-    }
-    .tool b{
-      display:block;
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:var(--ink3);
-      margin-bottom:10px;
-    }
-    .tags{display:flex; flex-wrap:wrap; gap:8px}
-    .tag{
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--ink2);
-      padding:8px 10px;
-      border:1px solid rgba(242,240,234,.12);
-      border-radius:999px;
-      background:rgba(0,0,0,.12);
-    }
-
-    @media (max-width: 920px){
-      .grid{grid-template-columns:1fr}
-      .section{grid-template-columns:1fr}
-      .toolkit{grid-template-columns:1fr}
-    }
-
-    @media print{
-      body{background:#fff;color:#000}
-      body::before,.topbar{display:none!important}
-      a{color:#000}
-      .card,.job,.tool{box-shadow:none!important}
-      .section{opacity:1!important; transform:none!important}
-    }
-  </style>
+    </style>
 </head>
-
 <body>
-  <div class="topbar">
-    <div class="wrap">
-      <div class="mark"><b>NATIA</b><span>KURTANIDZE</span></div>
-      <div class="nav">
-        <a href="https://natia-k.github.io/my-portfolio/" target="_blank" rel="noopener">Portfolio</a>
-        <a href="mailto:natia.kurtanidze55@gmail.com">Email</a>
-      </div>
+
+    <nav class="section-header">
+        <span>Natia Kurtanidze // System 2.0</span>
+        <span>Berlin // 2026</span>
+    </nav>
+
+    <div class="scroll-text kinetic-1">
+        <h1>NATIA KURTANIDZE</h1>
     </div>
-  </div>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="grid">
-        <div>
-          <h1>
-            NATIA<br>
-            <span class="stroke">KURTANIDZE</span>
-          </h1>
-          <div class="micro">
-            Visual designer focused on <b>identity systems</b>, typography and digital form.
-            Interested in how visual ideas behave across formats and environments.
-            Built and published my portfolio website (HTML/CSS/JS) to understand how systems translate into digital space.
-          </div>
+    <section class="content-block">
+        <div class="cell left">
+            <span class="label">01 / Manifesto</span>
+            <p>Visual Designer specializing in high-impact brand identities and digital architecture. I build systems that move.</p>
         </div>
-
-        <aside class="card">
-          <div class="row"><span>Role</span><b>Visual Designer</b></div>
-          <div class="row"><span>Location</span><b>Berlin, DE</b></div>
-          <div class="row"><span>Email</span><b>natia.kurtanidze55@gmail.com</b></div>
-          <div class="row"><span>Link</span><b>natia-k.github.io/cv/</b></div>
-
-          <div class="pills">
-            <a class="pill" href="https://natia-k.github.io/my-portfolio/" target="_blank" rel="noopener"><span class="dot"></span>Portfolio</a>
-            <a class="pill" href="mailto:natia.kurtanidze55@gmail.com"><span class="dot"></span>Contact</a>
-          </div>
-        </aside>
-      </div>
+        <div class="cell right">
+            <span class="label">02 / Network</span>
+            <p><a href="https://natia-k.github.io/my-portfolio/">PORTFOLIO</a></p>
+            <p><a href="mailto:natia.kurtanidze55@gmail.com">EMAIL</a></p>
+        </div>
     </section>
 
-    <div class="sections">
-
-      <section class="section" data-reveal>
-        <div class="kicker"><span class="num">01</span><br>Experience</div>
-        <div class="content">
-          <h2>Selected roles</h2>
-
-          <div class="cards">
-            <article class="job">
-              <div class="jobTop">
-                <div>
-                  <div class="role">Visual Designer</div>
-                  <div class="where">STK 118 GmbH</div>
-                </div>
-                <div class="when">2021 — Present</div>
-              </div>
-              <ul class="bullets">
-                <li>Developed <b>identity concepts</b> and campaign assets across digital and print.</li>
-                <li>Designed interface layouts and production-ready visuals with consistent typographic logic.</li>
-                <li>Iterated quickly while protecting coherence across formats.</li>
-              </ul>
-            </article>
-
-            <article class="job">
-              <div class="jobTop">
-                <div>
-                  <div class="role">Designer</div>
-                  <div class="where">Mandarin Facility</div>
-                </div>
-                <div class="when">2021 — 2025</div>
-              </div>
-              <ul class="bullets">
-                <li>Created structured layouts and visual concepts for multi-format outputs.</li>
-                <li>Maintained consistency across campaigns and platform requirements.</li>
-              </ul>
-            </article>
-
-            <article class="job">
-              <div class="jobTop">
-                <div>
-                  <div class="role">Freelance</div>
-                  <div class="where">Various clients</div>
-                </div>
-                <div class="when">2017 — 2020</div>
-              </div>
-              <ul class="bullets">
-                <li>Delivered logos, social assets, and brand materials for small businesses and creators.</li>
-                <li>Managed end-to-end production from concept to final files.</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" data-reveal>
-        <div class="kicker"><span class="num">02</span><br>Toolkit</div>
-        <div class="content">
-          <h2>Tools & skills</h2>
-          <p class="lead">Design-first, with technical fluency for web and modern production.</p>
-
-          <div class="toolkit">
-            <div class="tool">
-              <b>Design</b>
-              <div class="tags">
-                <span class="tag">Identity Systems</span>
-                <span class="tag">Typography</span>
-                <span class="tag">Editorial Layout</span>
-                <span class="tag">Digital Design</span>
-                <span class="tag">Motion Basics</span>
-              </div>
-            </div>
-
-            <div class="tool">
-              <b>Tech</b>
-              <div class="tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">GitHub</span>
-                <span class="tag">Python</span>
-                <span class="tag">AI Tools</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" data-reveal>
-        <div class="kicker"><span class="num">03</span><br>Education</div>
-        <div class="content">
-          <h2>Learning</h2>
-          <p class="lead">CS50x (HarvardX) — foundations in computer science, algorithms, and programming.</p>
-        </div>
-      </section>
-
+    <div class="scroll-text kinetic-2" style="background: var(--ink); color: var(--mucho-red);">
+        <h1>EXPERIENCE_EXPERIENCE</h1>
     </div>
-  </main>
 
-  <script>
-    // Scroll reveal
-    const items = document.querySelectorAll("[data-reveal]");
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) e.target.classList.add("visible");
-    }, { threshold: 0.15 });
-    items.forEach(el => io.observe(el));
-  </script>
+    <section class="content-block">
+        <div class="cell left">
+            <span class="label">03 / History</span>
+            <div style="margin-bottom: 80px;">
+                <span class="label" style="color:var(--ink)">2021 — PRESENT</span>
+                <h2>STK 118 GMBH</h2>
+                <p>Lead Visual Identity & Interface Architecture.</p>
+            </div>
+            <div style="margin-bottom: 80px;">
+                <span class="label" style="color:var(--ink)">2021 — 2025</span>
+                <h2>MANDARIN FACILITY</h2>
+                <p>Concept development and structural visual design.</p>
+            </div>
+            <div>
+                <span class="label" style="color:var(--ink)">2017 — 2020</span>
+                <h2>FREELANCE</h2>
+                <p>Logo design, digital illustration, and visual strategy.</p>
+            </div>
+        </div>
+        <div class="cell right" style="background: #ddd;">
+            <span class="label">04 / Education</span>
+            <h2>CS50x</h2>
+            <p>Harvard University Foundations of Computer Science.</p>
+        </div>
+    </section>
+
+    <div class="red-block">
+        <span class="label" style="color: black;">05 / Toolkit</span>
+        <h2>ADOBE CC. PYTHON. JS. HTML. CSS. BRANDING. PACKAGING.</h2>
+    </div>
+
+    <div class="marquee">
+        <div class="marquee-inner">
+            AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — AVAILABLE FOR HIRE — BERLIN — WORLDWIDE — 
+        </div>
+    </div>
+
+    <a href="mailto:natia.kurtanidze55@gmail.com" class="red-block" style="display: block; text-align: center; text-decoration: none;">
+        <h2>SAY HELLO →</h2>
+    </a>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Kinetic Scroll for Headers
+        gsap.to(".kinetic-1 h1", {
+            xPercent: -50,
+            scrollTrigger: {
+                trigger: ".kinetic-1",
+                scrub: 1
+            }
+        });
+
+        gsap.to(".kinetic-2 h1", {
+            xPercent: 20,
+            scrollTrigger: {
+                trigger: ".kinetic-2",
+                scrub: 1
+            }
+        });
+
+        // Marquee
+        gsap.to(".marquee-inner", {
+            xPercent: -30,
+            repeat: -1,
+            duration: 15,
+            ease: "linear"
+        });
+    </script>
 </body>
 </html>
