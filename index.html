@@ -1,387 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Natia Kurtanidze — CV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATIA KURTANIDZE</title>
+    <style>
+        :root {
+            --bg: #e8e8e8; /* High-end raw paper grey */
+            --ink: #000000;
+            --mucho-red: #ff3300; /* Mucho signature red */
+        }
 
-  <!-- Fonts: modern grotesk + optional serif accent -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;650;800;900&family=Fraunces:opsz,wght@9..144,300;9..144,600&display=swap" rel="stylesheet">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--ink); 
+            font-family: 'Inter', 'Helvetica', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-  <style>
-    :root{
-      --bg: #070707;
-      --bg2:#0b0b0b;
-      --ink:#f2f0ea;
-      --ink2: rgba(242,240,234,.72);
-      --ink3: rgba(242,240,234,.45);
-      --line: rgba(242,240,234,.12);
-      --accent:#ff2a2a;
+        /* BRUTALIST NAV */
+        nav {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 14px;
+            border-bottom: 2px solid var(--ink);
+        }
 
-      --g: 14px;               /* grid unit */
-      --pad: clamp(18px, 4vw, 56px);
-      --max: 1180px;
+        /* HERO - AGGRESSIVE SCALE */
+        .hero {
+            padding: 20px;
+            border-bottom: 2px solid var(--ink);
+        }
 
-      --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      --serif: "Fraunces", serif;
+        h1 {
+            font-size: 22vw; /* Massive */
+            line-height: 0.75;
+            letter-spacing: -0.09em; /* Tight "Mucho" kerning */
+            font-weight: 900;
+            text-transform: uppercase;
+        }
 
-      --ease: cubic-bezier(.16,1,.3,1);
-    }
+        /* THE GRID SYSTEM */
+        .row {
+            display: grid;
+            grid-template-columns: 1fr;
+            border-bottom: 2px solid var(--ink);
+        }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family:var(--sans);
-      background: radial-gradient(1200px 700px at 20% -10%, rgba(255,42,42,.10), transparent 60%),
-                  radial-gradient(900px 600px at 90% 10%, rgba(255,255,255,.06), transparent 65%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
-      color:var(--ink);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: geometricPrecision;
-      overflow-x:hidden;
-    }
+        @media (min-width: 800px) {
+            .row { grid-template-columns: 1fr 1fr; }
+        }
 
-    /* subtle film/noise */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.07;
-      mix-blend-mode: overlay;
-      background-image:url("https://grainy-gradients.vercel.app/noise.svg");
-      z-index:9999;
-    }
+        .cell {
+            padding: 60px 20px;
+            border-right: 0;
+        }
 
-    a{ color:inherit; text-decoration:none; }
-    .wrap{
-      max-width: var(--max);
-      margin:0 auto;
-      padding: var(--pad);
-    }
+        @media (min-width: 800px) {
+            .cell:first-child { border-right: 2px solid var(--ink); }
+        }
 
-    /* top bar */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(7,7,7,.78), rgba(7,7,7,.35));
-      border-bottom:1px solid var(--line);
-    }
-    .topbar .wrap{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding-top: calc(var(--pad) * .55);
-      padding-bottom: calc(var(--pad) * .55);
-    }
-    .mark{
-      display:flex;
-      align-items:baseline;
-      gap:10px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:12px;
-      color:var(--ink2);
-    }
-    .mark b{
-      color:var(--ink);
-      letter-spacing:.10em;
-      font-weight:800;
-    }
-    .nav{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--ink2);
-    }
-    .nav a{
-      padding:10px 12px;
-      border:1px solid transparent;
-      border-radius:999px;
-      transition: border-color .35s var(--ease), color .35s var(--ease), transform .35s var(--ease), background .35s var(--ease);
-    }
-    .nav a:hover{
-      color:var(--ink);
-      border-color: var(--line);
-      background: rgba(255,255,255,.03);
-      transform: translateY(-1px);
-    }
+        .label {
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--mucho-red);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 30px;
+        }
 
-    /* hero */
-    .hero{
-      padding-top: clamp(24px, 5vw, 70px);
-      padding-bottom: clamp(34px, 7vw, 110px);
-      border-bottom:1px solid var(--line);
-    }
+        h2 {
+            font-size: clamp(40px, 8vw, 120px);
+            line-height: 0.85;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            margin-bottom: 20px;
+        }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: clamp(16px, 3vw, 42px);
-      align-items:start;
-    }
+        p {
+            font-size: 22px;
+            line-height: 1.1;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
 
-    .title{
-      margin:0;
-      font-weight:900;
-      letter-spacing:-0.06em;
-      text-transform:uppercase;
-      line-height:.86;
-      font-size: clamp(56px, 8.7vw, 120px);
-    }
-    .title .stroke{
-      -webkit-text-stroke: 1px rgba(242,240,234,.45);
-      color: transparent;
-      display:inline-block;
-    }
+        /* FOOTER ACTION */
+        .contact {
+            background: var(--mucho-red);
+            padding: 100px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            color: var(--ink);
+            transition: background 0.1s;
+        }
 
-    .micro{
-      margin-top: 16px;
-      font-size:14px;
-      color:var(--ink2);
-      line-height:1.6;
-      max-width: 62ch;
-    }
-    .micro em{
-      font-family:var(--serif);
-      font-style:italic;
-      color:var(--ink);
-    }
+        .contact h2 { margin: 0; font-size: 15vw; }
+        .contact:hover { background: var(--ink); color: var(--mucho-red); }
 
-    .metaCard{
-      border:1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-      background: rgba(255,255,255,.02);
-      box-shadow: 0 30px 80px rgba(0,0,0,.35);
-      position:relative;
-      overflow:hidden;
-    }
-    .metaCard::after{
-      content:"";
-      position:absolute;
-      inset:-120px;
-      background: radial-gradient(circle at 20% 30%, rgba(255,42,42,.18), transparent 55%),
-                  radial-gradient(circle at 70% 60%, rgba(255,255,255,.10), transparent 55%);
-      filter: blur(18px);
-      opacity:.65;
-      pointer-events:none;
-    }
-    .metaInner{ position:relative; z-index:2; }
+    </style>
+</head>
+<body>
 
-    .metaRow{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      padding: 10px 0;
-      border-bottom:1px solid rgba(242,240,234,.10);
-      font-size:13px;
-      color:var(--ink2);
-    }
-    .metaRow:last-child{ border-bottom:none; }
-    .metaRow b{
-      color:var(--ink);
-      font-weight:650;
-      letter-spacing:.02em;
-    }
-    .pillRow{
-      margin-top: 14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(242,240,234,.14);
-      background: rgba(0,0,0,.18);
-      font-size:12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color:var(--ink2);
-      transition: transform .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease);
-      position:relative;
-      z-index:2;
-    }
-    .pill:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,42,42,.35);
-      color: var(--ink);
-    }
-    .pill .dot{
-      width:6px; height:6px; border-radius:50%;
-      background: var(--accent);
-      box-shadow: 0 0 18px rgba(255,42,42,.55);
-    }
+    <nav>
+        <span>Natia Kurtanidze</span>
+        <span>Index_2026</span>
+    </nav>
 
-    /* section layout */
-    .sections{
-      padding: clamp(30px, 6vw, 85px) 0;
-    }
-    .section{
-      display:grid;
-      grid-template-columns: 180px 1fr;
-      gap: clamp(16px, 3vw, 42px);
-      padding: clamp(18px, 3.8vw, 44px) 0;
-      border-bottom:1px solid var(--line);
-    }
-    .section:last-child{ border-bottom:none; }
+    <section class="hero">
+        <h1>NATIA<br>KURTA<br>NIDZE</h1>
+    </section>
 
-    .kicker{
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:var(--ink3);
-      line-height:1.6;
-    }
-    .kicker .num{
-      color:var(--ink2);
-      display:inline-block;
-      margin-bottom: 8px;
-    }
+    <div class="row">
+        <div class="cell">
+            <span class="label">Identity</span>
+            <p>Visual Designer specializing in building high-impact brand identities and digital systems. Currently at STK 118 GmbH.</p>
+        </div>
+        <div class="cell">
+            <span class="label">Contact</span>
+            <h2>Berlin, DE</h2>
+            <p>natia.kurtanidze55@gmail.com</p>
+        </div>
+    </div>
 
-    .content h2{
-      margin:0 0 12px 0;
-      font-size: 22px;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      text-transform:uppercase;
-    }
+    <div class="row">
+        <div class="cell">
+            <span class="label">Toolkit</span>
+            <p>PS. AI. ID. AE. PR. HTML. CSS. JS. PY.</p>
+        </div>
+        <div class="cell">
+            <span class="label">Education</span>
+            <h2>CS50x</h2>
+            <p>Harvard University Computer Science Foundations.</p>
+        </div>
+    </div>
 
-    .lead{
-      margin:0 0 14px 0;
-      font-size:16px;
-      line-height:1.7;
-      color:var(--ink2);
-      max-width: 78ch;
-    }
+    <a href="mailto:natia.kurtanidze55@gmail.com" class="contact">
+        <h2>HIRE ME</h2>
+    </a>
 
-    .cards{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .card{
-      border:1px solid rgba(242,240,234,.12);
-      border-radius: 18px;
-      padding: 16px 16px 14px 16px;
-      background: rgba(255,255,255,.02);
-      transition: transform .45s var(--ease), border-color .45s var(--ease), background .45s var(--ease);
-      position:relative;
-      overflow:hidden;
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background: radial-gradient(500px 220px at 10% 10%, rgba(255,42,42,.14), transparent 60%);
-      opacity:0;
-      transition: opacity .45s var(--ease);
-      pointer-events:none;
-    }
-    .card:hover{
-      transform: translateY(-3px);
-      border-color: rgba(255,42,42,.30);
-      background: rgba(255,255,255,.03);
-    }
-    .card:hover::before{ opacity:1; }
-
-    .cardTop{
-      display:flex;
-      justify-content:space-between;
-      gap:14px;
-      align-items:baseline;
-      flex-wrap:wrap;
-      position:relative;
-      z-index:2;
-    }
-    .role{
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:-0.02em;
-      font-size:16px;
-    }
-    .where{
-      color:var(--ink2);
-      font-weight:500;
-      font-size:14px;
-      letter-spacing:.01em;
-    }
-    .when{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size:12px;
-      color:var(--ink3);
-      letter-spacing:.14em;
-      text-transform:uppercase;
-    }
-
-    .bullets{
-      margin: 10px 0 0 0;
-      padding:0;
-      list-style:none;
-      position:relative;
-      z-index:2;
-    }
-    .bullets li{
-      padding-left: 18px;
-      margin: 10px 0;
-      color:var(--ink2);
-      line-height:1.6;
-      font-size:15px;
-      position:relative;
-    }
-    .bullets li::before{
-      content:"";
-      width:6px; height:6px;
-      border-radius:50%;
-      background: rgba(242,240,234,.65);
-      position:absolute;
-      left:0; top: 10px;
-    }
-    .bullets li strong{ color:var(--ink); font-weight:650; }
-
-    /* toolkit grid */
-    .toolkit{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .tool{
-      border:1px solid rgba(242,240,234,.10);
-      border-radius: 18px;
-      padding: 14px;
-      background: rgba(255,255,255,.02);
-    }
-    .tool b{
-      display:block;
-      font-size:12px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:var(--ink3);
-      margin-bottom: 10px;
-    }
-    .tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-    .tag{
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--ink2);
-      padding: 
+</body>
+</html>
